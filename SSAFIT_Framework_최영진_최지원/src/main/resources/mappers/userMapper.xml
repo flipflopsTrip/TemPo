@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafit.video.model.dao.UserDao">
+
+	<insert id="insertUser" parameterType="User">
+		INSERT INTO user (id , password, name, nickname, birth, email)
+		VALUES (#{id}, #{password}, #{name}, #{nickname}, ifnull(#{birth}, null), ifnull(#{email}, null))
+	</insert><!-- 가입할때 -->
+	
+	<select id="selectOne" parameterType="String" resultType="User">
+		SELECT id, password, name
+		FROM user
+		WHERE id = #{id}
+	</select><!-- 가입할때 중복 방지 -->
+	
+	<select id="selectAll">
+		SELECT id, password, name
+		FROM user
+	</select>
+	
+</mapper>

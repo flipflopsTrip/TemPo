@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafit.video.model.dao.VideoDao">
+
+	<!-- 전체글 조회 -->
+	<select id="selectAll" resultType="Video">
+		SELECT video_id as videoId, title, url, fitpart, youtuber, view_cnt as viewCnt, date_format(reg_date, '%Y-%M-%d') as regDate 
+		FROM video;
+	</select>
+	
+	<!-- 검색기능  -->
+	<select id="search" resultType="Video" parameterType="SearchCondition">
+		SELECT video_id as videoId, title, url, fitpart, youtuber, view_cnt as viewCnt, date_format(reg_date, '%Y-%M-%d') as regDate
+		FROM video
+		<!-- 검색 조건 (동적쿼리)-->
+		<where>
+    		<if test="key != 'none' and fitpart != 'all'">
+         		${key} LIKE concat('%', #{word}, '%') AND fitpart = #{fitpart}
+    		</if>
+    		<if test="key != 'none'">
+         		${key} LIKE concat('%', #{word}, '%')
+    		</if>
+    		<if test="fitpart != 'all'">
+        		fitpart = #{fitpart}
+    		</if>
+  		</where>
+		<!-- 어떤 기준으로 어떤 방향으로 정렬 -->
+		<if test="orderBy != 'none'">
+			ORDER BY ${orderBy} ${orderByDir}
+		</if>
+	</select>
+
+	<!-- 상세글 조회 -->
+	<select id="selectOne" resultType="Video" parameterType="int">
+		SELECT video_id as videoId, title, url, fitpart, youtuber, view_cnt as viewCnt, date_format(reg_date, '%Y-%M-%d') as regDate
+		FROM video
+		WHERE video_id = #{videoId};
+	</select>
+
+	<!-- 조회수 증가 -->
+	<update id="updateViewCnt" parameterType="int">
+		UPDATE video
+		SET view_cnt = view_cnt+1
+		WHERE video_id = #{videoId}
+	</update>
+
+</mapper>
