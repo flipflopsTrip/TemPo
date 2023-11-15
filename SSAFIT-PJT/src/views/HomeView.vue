@@ -2,7 +2,8 @@
   <div>
     <!-- <VideoView/> -->
     <VideoList />
-    <VideoTempView/>
+    <!-- youtube api 용량 이슈로 주석 -->
+    <!-- <VideoTempView/> -->
   </div>
 </template>
 
