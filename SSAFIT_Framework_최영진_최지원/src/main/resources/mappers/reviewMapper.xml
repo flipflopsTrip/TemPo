@@ -6,42 +6,42 @@
     
     <!-- 모든 리뷰 가져오기 -->
     <select id="selectAll" parameterType="int" resultType="Review">
-        SELECT review_id as reviewId, user_id as userId, video_id as videoId, title, content, date_format(reg_date, '%Y-%M-%d') as regDate, view_cnt as viewCnt
+        SELECT reviewId, userId, videoId, title, content, date_format(regDate, '%Y-%M-%d') as regDate, viewCnt
         FROM review
-        WHERE video_id=#{videoId}
+        WHERE videoId=#{videoId}
     </select>
     
     <!-- id로 리뷰 가져오기 -->
     <select id="selectOne" parameterType="int" resultType="Review">
-        SELECT review_id as reviewId, user_id as userId, video_id as videoId, title, content, date_format(reg_date, '%Y-%M-%d') as regDate, view_cnt as viewCnt
+        SELECT reviewId, userId, videoId, title, content, date_format(regDate, '%Y-%M-%d') as regDate, viewCnt
         FROM review
-        WHERE review_id=#{reviewId}
+        WHERE reviewId=#{reviewId}
     </select>
     
     <!-- 리뷰 등록하기 -->
     <insert id="insertReview" parameterType="Review" keyProperty="reviewId" useGeneratedKeys="true">
-        INSERT INTO review (user_id, video_id, title, content)
+        INSERT INTO review (userId, videoId, title, content)
         VALUES (#{userId}, #{videoId}, #{title}, #{content})
     </insert>
     
     <!-- 리뷰 수정하기 -->
     <update id="updateReview" parameterType="Review">
         UPDATE review
-        SET title=#{title}, content=#{content}, reg_date = now()
-        WHERE review_id=#{reviewId}
+        SET title=#{title}, content=#{content}, regDate = now()
+        WHERE reviewId=#{reviewId}
     </update><!-- 수정 날짜는 따로 안함 -->
     
     <!-- 리뷰 삭제하기 -->
     <delete id="deleteReview" parameterType="int">
         DELETE FROM review
-        WHERE review_id=#{reviewId}
+        WHERE reviewId=#{reviewId}
     </delete>
     
     <!-- 조회수 증가 -->
     <update id="updateViewCnt" parameterType="int">
         UPDATE review
-        SET view_cnt = view_cnt+1
-        WHERE review_id=#{reviewId}
+        SET viewCnt = viewCnt+1
+        WHERE reviewId=#{reviewId}
     </update>
     
 

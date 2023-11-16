@@ -6,7 +6,7 @@
 
 	<insert id="insertUser" parameterType="User">
 		INSERT INTO user (id , password, name, nickname, birth, email)
-		VALUES (#{id}, #{password}, #{name}, #{nickname}, ifnull(#{birth}, null), ifnull(#{email}, null))
+		VALUES (#{id}, #{password}, #{name}, #{nickname}, ifnull(#{birth}, null), #{email})
 	</insert><!-- 가입할때 -->
 	
 	<select id="selectOne" parameterType="String" resultType="User">

@@ -5,25 +5,25 @@
 <mapper namespace="com.ssafit.video.model.dao.WishDao">
     
     <select id="selectWishList" parameterType="String" resultType="Video">
-    	SELECT video_id as videoId, title, url, fitpart, youtuber, view_cnt as viewCnt, date_format(reg_date, '%Y-%M-%d') as regDate 
+    	SELECT videoId, title, url, fitpart, youtuber, viewCnt, date_format(regDate, '%Y-%M-%d') as regDate 
 		FROM video
-		WHERE video_id IN (SELECT video_id FROM wish WHERE user_id=#{userId})
+		WHERE videoId IN (SELECT videoId FROM wish WHERE userId=#{userId})
     </select>
     
     <select id="isWish" parameterType="Wish" resultType="int">
         SELECT count(*)
         FROM wish
-        WHERE user_id=#{userId} and video_id=#{videoId}
+        WHERE userId=#{userId} and videoId=#{videoId}
     </select>
     
     <insert id="createWish" parameterType="Wish" >
-        INSERT INTO wish (user_id, video_id)
+        INSERT INTO wish (userId, videoId)
         VALUES (#{userId}, #{videoId})
     </insert>
     
     <delete id="deleteWish" parameterType="Wish">
         DELETE FROM wish
-        WHERE video_id=#{videoId} and user_id=#{userId}
+        WHERE videoId=#{videoId} and userId=#{userId}
     </delete>
     
 
