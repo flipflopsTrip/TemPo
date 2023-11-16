@@ -4,9 +4,10 @@ import io.swagger.annotations.ApiModel;
 
 @ApiModel(value="찜 바구니", description = "찜 영상 및 회원 정보")
 public class Wish {
-	int wishId;
-	int videoId;
-	String userId;
+	private int wishId;
+	private int videoId;
+	private String userId;
+	private String regDate;
 	
 	public Wish() {}
 
@@ -40,9 +41,17 @@ public class Wish {
 		this.userId = userId;
 	}
 
+	public String getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+
 	@Override
 	public String toString() {
-		return "Wish [wishId=" + wishId + ", videoId=" + videoId + ", userId=" + userId + "]";
+		return "Wish [wishId=" + wishId + ", videoId=" + videoId + ", userId=" + userId + ", regDate=" + regDate + "]";
 	}
-	
+
 }
