@@ -2,21 +2,30 @@
   <header>
     <nav class="header-nav">
       <div>
-        <RouterLink to="/" class="logo"><img src="@/assets/logo.png" alt="logo" class="logo"></RouterLink>
+        <RouterLink to="/" class="logo"
+          ><img src="@/assets/logo.png" alt="logo" class="logo"
+        /></RouterLink>
         <RouterLink to="/video">운동영상</RouterLink>
       </div>
       <div>
+        <RouterLink to="/shopping">SHOPPING</RouterLink>
+      </div>
+      <div>
         <a href="#" v-if="store.loginUserId" @click="logout">로그아웃</a>
-        <RouterLink :to="{ name : 'UserLogin' }" v-if="!store.loginUserId">로그인</RouterLink>
-        <RouterLink :to="{ name: 'UserRegist' }" v-if="!store.loginUserId">회원가입</RouterLink>
-      </div> 
+        <RouterLink :to="{ name: 'UserLogin' }" v-if="!store.loginUserId"
+          >로그인</RouterLink
+        >
+        <RouterLink :to="{ name: 'UserRegist' }" v-if="!store.loginUserId"
+          >회원가입</RouterLink
+        >
+      </div>
     </nav>
   </header>
 </template>
 
 <script setup>
-import {ref, computed, watch, onMounted } from 'vue';
-import { useUserStore } from '@/stores/user';
+import { ref, computed, watch, onMounted } from "vue";
+import { useUserStore } from "@/stores/user";
 
 const store = useUserStore();
 
@@ -25,14 +34,13 @@ onMounted(() => {
   if (savedUser) {
     store.loginUserId = JSON.parse(savedUser);
   }
-  console.log('현재 로그인 유저의 id : ' + store.loginUserId)
+  console.log("현재 로그인 유저의 id : " + store.loginUserId);
 });
 
-const logout = function() {
+const logout = function () {
   store.logout();
   store.loginUserId = null;
 };
-
 </script>
 
 <style scoped>

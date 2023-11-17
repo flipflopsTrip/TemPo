@@ -1,4 +1,3 @@
-
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 
@@ -14,6 +13,11 @@ import ReviewUpdate from "@/components/review/ReviewUpdate.vue";
 
 import UserRegist from "@/components/user/UserRegist.vue";
 import UserLogin from "@/components/user/UserLogin.vue";
+
+import ShoppingView from "@/views/ShoppingView.vue";
+import ShoppingList from "@/components/shopping/ShoppingList.vue";
+import ShoppingSearch from "@/components/shopping/ShoppingSearch.vue";
+import ShoppingListItem from "@/components/shopping/ShoppingListItem.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -78,6 +82,13 @@ const router = createRouter({
       path: "/login",
       name: "UserLogin",
       component: UserLogin,
+    },
+
+    //shopping
+    {
+      path: "/shopping",
+      // name: "Shopping",
+      component: ShoppingView,
     },
   ],
 });
