@@ -1,0 +1,2 @@
+//import.meta.env.VITE_NAVERSHOP_CLIENT_ID
+//import.meta.env.VITE_NAVERSHOP_CLIENT_SECRET
