@@ -10,13 +10,13 @@
 	</insert><!-- 가입할때 -->
 	
 	<select id="selectOne" parameterType="String" resultType="User">
-		SELECT id, password, name
+		SELECT id, password, name, nickname, email, birth
 		FROM user
 		WHERE id = #{id}
 	</select><!-- 가입할때 중복 방지 -->
 	
 	<select id="selectAll">
-		SELECT id, password, name
+		SELECT id, password, name, nickname, email, birth
 		FROM user
 	</select>
 	

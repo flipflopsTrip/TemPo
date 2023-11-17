@@ -11,5 +11,7 @@ public interface UserService {
 	User login(User user);//로그인
 
 	List<User> selectAll();
+
+	User selectOne(String id);
 	
 }

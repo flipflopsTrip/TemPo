@@ -17,17 +17,37 @@
 <script setup>
 import {ref, computed, watch, onMounted } from 'vue';
 import { useUserStore } from '@/stores/user';
+import { useRouter } from 'vue-router';
 
 const store = useUserStore();
+const router = useRouter;
 
-onMounted(() => {
-  const savedUser = localStorage.getItem("loginUserId");
-  if (savedUser) {
-    store.loginUserId = JSON.parse(savedUser);
-  }
-  console.log('현재 로그인 유저의 id : ' + store.loginUserId)
-});
+// onMounted(() => {
+  //   store.getId();
+// });
+store.getId();
 
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(record => record.meta.requiresAuth)) {
+//     // This route requires authentication
+//     if (!store.loginUserId) {
+//       // Redirect to login page if not authenticated
+//       next({
+//         name: 'UserLogin',
+//         query: { redirect: to.fullPath },
+//       });
+//     } else {
+//       // Continue to the route
+//       next();
+//     }
+//   } else {
+//     // Continue to the route
+//     next();
+//   }
+// });
+
+
+  
 const logout = function() {
   store.logout();
   store.loginUserId = null;

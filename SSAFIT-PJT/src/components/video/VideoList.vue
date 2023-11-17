@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>운동 영상</div>
+    <div>운동 영상1</div>
     <template v-for="video in store.videoList">
       <div>
         <RouterLink :to="`/video/${video.videoId}`">{{
@@ -16,11 +16,17 @@
 <script setup>
 import { onMounted, computed } from "vue";
 import { useVideoStore } from "@/stores/video";
+
+import { useUserStore } from '@/stores/user';
 const store = useVideoStore();
+
+const uStore = useUserStore();
 
 onMounted(() => {
   store.getVideoList();
 });
+
+
 </script>
 
 <style scoped></style>

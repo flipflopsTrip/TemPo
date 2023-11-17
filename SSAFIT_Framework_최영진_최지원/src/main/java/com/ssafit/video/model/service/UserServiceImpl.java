@@ -41,4 +41,14 @@ public class UserServiceImpl implements UserService {
 		return userDao.selectAll();
 	}
 
+	@Override
+	public User selectOne(String id) {
+		User tmp = userDao.selectOne(id);
+		if (tmp != null) {
+			tmp.setPassword(null);
+			return tmp;
+		}
+		return null;
+	}
+
 }
