@@ -44,6 +44,14 @@
 				</div>
 
 			<div class="input-con row mb-4">
+				<label for="nickname" class="col-sm-2 form-label">닉네임</label>
+				<div class="col-sm-10">
+					<input class="form-control" type="text" id="nickname" placeholder="사용하실 닉네임을 입력하세요" required autocomplete="off"
+					v-model="nickname">
+					</div>
+				</div>
+
+			<div class="input-con row mb-4">
 				<label for="email" class="col-sm-2 form-label">이메일</label>
 				<div class="col-sm-10">
 				<input class="form-control" type="email" id="email" placeholder="you@example.com" autocomplete="off"
@@ -98,6 +106,7 @@ const id = ref('');
 const password = ref('');
 const passwordCheck = ref('');
 const name = ref('');
+const nickname = ref('');
 const email = ref(null);
 
 const date = ref();
@@ -193,6 +202,7 @@ const registUser = function() {
       password: password.value,
       passwordCheck: passwordCheck.value,
       name: name.value,
+			nickname: nickname.value,
       birth: birth.value,
       email: email.value,
     });

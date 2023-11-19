@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafit.video.model.dao.WishDao">
+    
+    <select id="selectWishList" parameterType="String" resultType="Video">
+    	SELECT videoId, title, url, fitpart, youtuber, viewCnt, date_format(regDate, '%Y-%M-%d') as regDate 
+		FROM video
+		WHERE videoId IN (SELECT videoId FROM wish WHERE userId=#{userId})
+    </select>
+    
+    <select id="isWish" parameterType="Wish" resultType="int">
+        SELECT count(*)
+        FROM wish
+        WHERE userId=#{userId} and videoId=#{videoId}
+    </select>
+    
+    <insert id="createWish" parameterType="Wish" >
+        INSERT INTO wish (userId, videoId)
+        VALUES (#{userId}, #{videoId})
+    </insert>
+    
+    <delete id="deleteWish" parameterType="Wish">
+        DELETE FROM wish
+        WHERE videoId=#{videoId} and userId=#{userId}
+    </delete>
+    
+
+</mapper>

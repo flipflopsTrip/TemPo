@@ -6,7 +6,8 @@
         <RouterLink to="/video">운동영상</RouterLink>
       </div>
       <div>
-        <a href="#" v-if="store.loginUserId" @click="logout">로그아웃</a>
+        <span v-if="store.loginUserId">{{ store.sessionUser.nickname }}님 반갑습니다</span>
+        <a href="#" v-if="store.loginUserId" @click="logout" class="logout">로그아웃</a>
         <RouterLink :to="{ name : 'UserLogin' }" v-if="!store.loginUserId">로그인</RouterLink>
         <RouterLink :to="{ name: 'UserRegist' }" v-if="!store.loginUserId">회원가입</RouterLink>
       </div> 
@@ -20,37 +21,23 @@ import { useUserStore } from '@/stores/user';
 import { useRouter } from 'vue-router';
 
 const store = useUserStore();
-const router = useRouter;
+const router = useRouter();
 
 // onMounted(() => {
   //   store.getId();
 // });
 store.getId();
+router.beforeEach(async (to, from, next) => {
+  if (store.loginUserId != null) {
+    await store.getUser(store.loginUserId);
+    next();
+  }
+});
 
-// router.beforeEach((to, from, next) => {
-//   if (to.matched.some(record => record.meta.requiresAuth)) {
-//     // This route requires authentication
-//     if (!store.loginUserId) {
-//       // Redirect to login page if not authenticated
-//       next({
-//         name: 'UserLogin',
-//         query: { redirect: to.fullPath },
-//       });
-//     } else {
-//       // Continue to the route
-//       next();
-//     }
-//   } else {
-//     // Continue to the route
-//     next();
-//   }
-// });
-
-
-  
-const logout = function() {
+ const logout = function() {
   store.logout();
   store.loginUserId = null;
+  store.sessionUser = null;
 };
 
 </script>
@@ -66,6 +53,13 @@ header {
 header a {
   margin: 10px;
   text-decoration: none;
+  color: white;
+}
+.logout {
+  font-size: 0.9rem;
+}
+header span {
+  margin: 10px;
   color: white;
 }
 
