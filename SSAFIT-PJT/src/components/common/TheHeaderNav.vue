@@ -5,6 +5,12 @@
         <RouterLink to="/" class="logo"><img src="@/assets/logo.png" alt="logo" class="logo"></RouterLink>
         <RouterLink to="/video">운동영상</RouterLink>
       </div>
+            <div>
+        <RouterLink to="/community">Community</RouterLink>
+      </div>
+      <div>
+        <RouterLink to="/shopping">Shopping</RouterLink>
+      </div>
       <div>
         <span v-if="store.loginUserId">{{ store.sessionUser.nickname }}님 반갑습니다</span>
         <a href="#" v-if="store.loginUserId" @click="logout" class="logout">로그아웃</a>

@@ -79,6 +79,40 @@ const router = createRouter({
       name: "UserLogin",
       component: UserLogin,
     },
+        //shopping
+    {
+      path: "/shopping",
+      // name: "Shopping",
+      component: ShoppingView,
+    },
+    //board
+    {
+      path: "/community",
+      name: "community",
+      component: CommunityView,
+      children: [
+        {
+          path: "",
+          name: "communityList",
+          component: CommunityList,
+        },
+        {
+          path: "create",
+          name: "communityCreate",
+          component: CommunityCreate,
+        },
+        {
+          path: ":id",
+          name: "communityDetail",
+          component: CommunityDetail,
+        },
+        {
+          path: "update",
+          name: "communityUpdate",
+          component: CommunityUpdate,
+        },
+      ],
+    },
   ],
 });
 
