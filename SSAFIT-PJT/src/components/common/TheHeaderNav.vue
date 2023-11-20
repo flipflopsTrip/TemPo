@@ -7,6 +7,7 @@
       </div>
       <div>
         <span v-if="store.loginUserId">{{ store.sessionUser.nickname }}님 반갑습니다</span>
+        <RouterLink :to="{ name : 'MyPage' }" v-if="store.loginUserId">마이페이지</RouterLink>
         <a href="#" v-if="store.loginUserId" @click="logout" class="logout">로그아웃</a>
         <RouterLink :to="{ name : 'UserLogin' }" v-if="!store.loginUserId">로그인</RouterLink>
         <RouterLink :to="{ name: 'UserRegist' }" v-if="!store.loginUserId">회원가입</RouterLink>

@@ -17,6 +17,10 @@ import UserLogin from "@/components/user/UserLogin.vue";
 import UserFindId from "@/components/user/UserFindId.vue";
 import UserFindPassword from "@/components/user/UserFindPassword.vue";
 
+import MyPageView from "@/views/MyPageView.vue";
+import MyPageMain from "@/components/mypage/MyPageMain.vue";
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -91,7 +95,23 @@ const router = createRouter({
       name: "UserFindPassword",
       component: UserFindPassword,
     },
-  ],
-});
+
+    //
+    {
+      path: "/mypage",
+      name: "MyPage",
+      component: MyPageView,
+      children: [
+        {
+          path: "",
+          name: "MyPageMain",
+          component: MyPageMain,
+        },
+      ],
+    },
+
+
+  ], //close
+}); //close
 
 export default router;
