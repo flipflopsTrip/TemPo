@@ -8,7 +8,10 @@
         <RouterLink to="/video">운동영상</RouterLink>
       </div>
       <div>
-        <RouterLink to="/shopping">SHOPPING</RouterLink>
+        <RouterLink to="/community">Community</RouterLink>
+      </div>
+      <div>
+        <RouterLink to="/shopping">Shopping</RouterLink>
       </div>
       <div>
         <a href="#" v-if="store.loginUserId" @click="logout">로그아웃</a>

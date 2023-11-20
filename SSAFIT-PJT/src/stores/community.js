@@ -3,68 +3,62 @@ import { defineStore } from "pinia";
 import router from "@/router";
 import axios from "axios";
 
-const REST_BOARD_API = `http://localhost:8080/api/board`;
+const REST_COMMUNITY_API = `http://localhost:8080/api-community/community`;
 
-export const useBoardStore = defineStore("board", () => {
-  const boardList = ref([]);
-  const getBoardList = function () {
-    axios.get(REST_BOARD_API).then((response) => {
-      boardList.value = response.data;
+export const useCommunityStore = defineStore("community", () => {
+  const communityList = ref([]);
+  const getCommunityList = function () {
+    axios.get(REST_COMMUNITY_API).then((response) => {
+      communityList.value = response.data;
     });
   };
 
-  //게시글 한개
-  const board = ref({});
-  const getBoard = function (id) {
-    axios.get(`${REST_BOARD_API}/${id}`).then((response) => {
-      board.value = response.data;
+  //글 한개
+  const community = ref({});
+  const getCommunity = function (id) {
+    axios.get(`${REST_COMMUNITY_API}/${id}`).then((response) => {
+      community.value = response.data;
     });
   };
 
-  //게시글 등록
-  const createBoard = function (board) {
+  //등록
+  const createCommunity = function (community) {
     axios({
-      url: REST_BOARD_API,
+      url: REST_COMMUNITY_API,
       method: "POST",
-      //아래꺼 없어도 알아서 보내더라 axios 쵝오~
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: board,
+      data: community,
     })
       .then(() => {
-        //response 응답으로 들어온 게시글의 id를 이용해서
-        //상세보기로 바로 점프도 가넝이야~~
-        router.push({ name: "boardList" });
+        router.push({ name: "communityList" });
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const updateBoard = function () {
-    axios.put(REST_BOARD_API, board.value).then(() => {
-      router.push({ name: "boardList" });
+  const updateCommunity = function () {
+    axios.put(REST_COMMUNITY_API, community.value).then(() => {
+      router.push({ name: "communityList" });
     });
   };
 
-  const searchBoardList = function (searchCondition) {
+  const searchCommunityList = function (searchCondition) {
     axios
-      .get(REST_BOARD_API, {
+      .get(REST_COMMUNITY_API, {
         params: searchCondition,
       })
       .then((res) => {
-        boardList.value = res.data;
+        communityList.value = res.data;
       });
   };
 
   return {
-    boardList,
-    getBoardList,
-    board,
-    getBoard,
-    createBoard,
-    updateBoard,
-    searchBoardList,
+    communityList,
+    getCommunityList,
+    community,
+    getCommunity,
+    createCommunity,
+    updateCommunity,
+    searchCommunityList,
   };
 });

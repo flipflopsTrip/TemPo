@@ -29,17 +29,18 @@
 
 <script setup>
 import { ref } from "vue";
-import { useBoardStore } from "@/stores/board";
+import { useCommunityStore } from "@/stores/community";
 
-const store = useBoardStore();
-const board = ref({
+const store = useCommunityStore();
+const community = ref({
+  category: "",
   title: "",
-  writer: "",
+  userId: "",
   content: "",
 });
 
-const createBoard = function () {
-  store.createBoard(board.value);
+const createCommunity = function () {
+  store.createCommunity(board.value);
 };
 </script>
 
