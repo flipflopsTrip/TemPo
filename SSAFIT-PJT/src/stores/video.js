@@ -19,7 +19,7 @@ export const useVideoStore = defineStore('video', () => {
         part: "snippet",
         q: keyword,
         type: 'video',
-        maxResults: 2
+        maxResults: 3
       }
     })
     .then((response)=>{
