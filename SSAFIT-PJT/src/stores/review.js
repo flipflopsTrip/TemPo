@@ -14,7 +14,7 @@ export const useReviewStore = defineStore("review", () => {
       .then((response) => {
         reviewList.value = response.data;
       })
-      .catch(() => {});
+      .catch((err) => {console.log(err)});
   };
 
   //detail

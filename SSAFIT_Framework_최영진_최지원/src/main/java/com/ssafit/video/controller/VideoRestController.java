@@ -27,7 +27,9 @@ import springfox.documentation.annotations.ApiIgnore;
 @RequestMapping("/api-video")
 @Api(tags="비디오 컨트롤러")
 public class VideoRestController {
-
+	private static final String SUCCESS = "success";
+	private static final String FAIL = "fail";
+	
 	@Autowired
 	private VideoService videoService;
 
@@ -45,10 +47,36 @@ public class VideoRestController {
 		return new ResponseEntity<List<Video>>(list, HttpStatus.OK);
 	}
 	
+	
 	@GetMapping("/video/{id}")
 	@ApiOperation(value="비디오 상세 조회", notes="비디오 상세 조회")
 	public ResponseEntity<Video> detail(@PathVariable int id){
 		Video video = videoService.getVideo(id);
 		return new ResponseEntity<Video>(video, HttpStatus.OK);
 	}
+	
+	
+	@PostMapping("/check")
+	@ApiOperation(value="비디오 중복 확인", notes="비디오 중복 확인")
+    public ResponseEntity<Video> checkVideo(@RequestBody String videoUrl) {
+		videoUrl = videoUrl.replace("=", "");
+        Video video = videoService.checkVideo(videoUrl);
+        if (video != null) { //이미 들어있는 영상
+            return new ResponseEntity<Video>(video, HttpStatus.OK);
+        } else { //새 영상
+        	return new ResponseEntity<Video>(video, HttpStatus.OK);
+        }
+    }
+	
+	@PostMapping("/video")
+	@ApiOperation(value="비디오 저장", notes="비디오 클릭 시 데이터 저장")
+	public ResponseEntity<Video> clickInsert(@RequestBody Video video) {
+		System.out.println("저장. 컨트 들어온 video: "+video);
+		Video savedVideo = videoService.saveVideo(video);
+		System.out.println("저장후 url로 가져온 비디오: "+savedVideo);
+		return new ResponseEntity<Video>(savedVideo, HttpStatus.OK);
+	}
+	
+	
+	
 }

@@ -14,12 +14,12 @@ CREATE TABLE `user` (
 CREATE TABLE `video` (
     `videoId`    int    NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `viewCnt` int default 0 NOT NULL,
-    `title`    varchar(50) NOT NULL,
+    `title`    varchar(120) NOT NULL,
     `fitpart`    varchar(50) NOT NULL,
     `youtuber`    varchar(50)    NOT NULL,
     `url`    varchar(300) NOT NULL,
     `regDate`    datetime default now() NULL,
-	`level`	int	NOT NULL	DEFAULT 0
+    `level`	int	NOT NULL	DEFAULT 0
 );
 
 CREATE TABLE `review` (
