@@ -37,8 +37,8 @@ export const useUserStore = defineStore('user', () => {
     axios.post(`${REST_SSAFIT_API}/login`, loginUser)
     .then((res)=>{
       if (res.data !== '')  {
-        loginUserId.value = res.data;
-        localStorage.setItem("loginUserId", JSON.stringify(loginUserId.value));
+        sessionStorage.setItem('access-token', res.data["access-token"]);
+        loginUserId.value = loginUser.id;
         alert('로그인 성공');
         router.push({name: 'home'});
       }
@@ -50,12 +50,46 @@ export const useUserStore = defineStore('user', () => {
       console.log(err)
     })
   };
+
+  //sessionStorage에서 id 가져오기
+  //store.loginUserId
+  const getId = function() {
+    //id 추출
+    if (sessionStorage.getItem(['access-token']) != null){
+      const token = sessionStorage.getItem(['access-token']).split('.');
+      let id = token[1]
+      id = atob(id) //base64 복호화
+      id = JSON.parse(id)
+      //id 저장
+      loginUserId.value = id['id']
+      console.log("3. id: "+loginUserId.value)
+    } else {
+      console.log("로그인 안함")
+    }
+  }
+
+  /*
+   로그인한 유저의 정보! 가져오는 법
+   0. store.getId(); 를 한다. (store.loginUserId에 id가 저장됨)
+   1. store.getUser(store.loginUserId); 를 한다. (store.sessionUser 안에 유저정보가 객체 형식으로 저장됨)
+   2. store.sessionUser 을 사용.
+  */
+  const sessionUser = ref('');
+  const getUser = function(sessionId) {
+    axios.post(`${REST_SSAFIT_API}/user/${sessionId}`)
+    .then((res)=>{
+      sessionUser.value = res.data;
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
   
   //로그아웃
   const logout = function() {
     axios.get(`${REST_SSAFIT_API}/logout`)
-    .then((res)=>{
-      localStorage.removeItem("loginUserId");
+    .then(()=>{
+      sessionStorage.removeItem("access-token");
       loginUserId.value = '';
     })
     .catch((err)=>{
@@ -64,5 +98,5 @@ export const useUserStore = defineStore('user', () => {
   }
 
 
-  return { registUser, userList, getUserList, loginUserId, login, logout, }
+  return { registUser, userList, getUserList, loginUserId, login, getUser, sessionUser, logout, getId, }
 })

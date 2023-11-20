@@ -2,19 +2,25 @@
   <div>
     <h2>Video&View</h2>
     <div>
-      <div>{{ store.video.videoId }}</div>
-      <div>{{ store.video.title }}</div>
-      <div>{{ store.video.fitpart }}</div>
-      <div>{{ store.video.youtuber }}</div>
-      <div>{{ store.video.url }}</div>
-      <div>{{ store.video.viewCnt }}</div>
+      <div>
+        <iframe 
+          width="560" height="315" 
+          :src="videoURL" 
+          title="YouTube video player" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+        </iframe>
+      </div>
+      <div>{{ store.clickedVideo.title }}</div>
+      <div>{{ store.clickedVideo.youtuber }}</div>
     </div>
+
     <div>
       <h3>리뷰 목록</h3>
       <hr />
-      <button>
-        <RouterLink :to="{ name: 'ReviewCreate' }">ReviewCreate</RouterLink>
-      </button>
+      <div>
+        <RouterLink :to="{ name: 'ReviewCreate' }">리뷰 작성</RouterLink>
+      </div>
       <table>
         <tr>
           <th>번호</th>
@@ -43,16 +49,22 @@
 import { onMounted, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useVideoStore } from "@/stores/video";
-import { useReviewStore } from "../../stores/review";
+import { useReviewStore } from "@/stores/review";
 
 const store = useVideoStore();
 const storeR = useReviewStore();
 const router = useRouter();
 const route = useRoute();
-onMounted(() => {
-  storeR.getReviewList(route.params.videoId);
-  store.getVideo(route.params.videoId);
+
+const videoURL = computed(()=>{
+	const videoId = store.clickedVideo.url;
+	return `https://www.youtube.com/embed/${videoId}`;
 });
+
+onMounted(() => {
+	storeR.getReviewList(store.clickedVideo.videoId);
+})
+
 </script>
 
 <style scoped></style>

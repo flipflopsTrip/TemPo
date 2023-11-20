@@ -1,6 +1,8 @@
 package com.ssafit.video.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafit.video.model.dto.User;
 import com.ssafit.video.model.service.UserService;
+import com.ssafit.video.util.JwtUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,10 +28,16 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api-user")
 @Api(tags="회원 컨트롤러")
 public class UserRestController {
+	private static final String SUCCESS = "success";
+	private static final String FAIL = "fail";
 	
-	//UserService 주입
+	//UserService
 	@Autowired
 	private UserService userService;
+	
+	//JWT
+	@Autowired
+	private JwtUtil jwtUtil;
 	
 	@GetMapping("/user")
 	@ApiOperation(value="전체 회원 목록", notes="전체 회원 목록 가져오기")
@@ -37,7 +47,19 @@ public class UserRestController {
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		else 
 			return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+	}
+	
+	@PostMapping("/user/{id}")
+	@ApiOperation(value="회원 정보", notes="id와 일치하는 회원 가져오기")
+	public ResponseEntity<User> selectOne(@PathVariable String id) {
+		HttpStatus status = null;
+		User user = userService.selectOne(id);
+		System.out.println(user);
 		
+		if (user != null) status = HttpStatus.OK; 
+		else status = HttpStatus.NO_CONTENT;
+		
+		return new ResponseEntity<User>(user, status);
 	}
 	
 	//회원가입을 해보자 form 태그 형식으로 넘어왔다.
@@ -53,14 +75,33 @@ public class UserRestController {
 	
 	@PostMapping("login")
 	@ApiOperation(value="로그인", notes="아이디와 비밀번호를 이용한 로그인")
-	public ResponseEntity<?> login(@RequestBody User user, HttpSession session) {
-		User tmp = userService.login(user);
-		if(tmp == null)
-//			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
-			return new ResponseEntity<String>("", HttpStatus.OK);
-		
-		session.setAttribute("loginUser", tmp);
-		return new ResponseEntity<String>(tmp.getId(), HttpStatus.OK);
+	public ResponseEntity<Map<String, Object>> login(@RequestBody User user) {
+		HttpStatus status = null;
+		HashMap<String, Object> result = new HashMap<>();
+		try {
+			//들어온 user가 null이 아니거나 작성되어 있고,
+			if (user.getId() != null || user.getId().length() > 0) {
+				User tmp = userService.login(user);
+				System.out.println("가져온 유저: "+tmp);
+				
+				//가져온 유저 데이터가 null이 아니고 id가 있을 때 -> 로그인 성공
+				if (tmp.getId() != null && tmp.getId().length() > 0) {
+					result.put("access-token", jwtUtil.createToken("id", user.getId()));
+					result.put("msg", SUCCESS);
+					//result.put("loginMember", tmp);
+					status = HttpStatus.ACCEPTED;
+					
+				} else {
+					result.put("msg", FAIL);
+					status = HttpStatus.UNAUTHORIZED; // 권한없음
+				}
+			} //if
+			
+		} catch (Exception e) {
+			result.put("msg", FAIL);
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(result, status);
 	}
 	
 	@GetMapping("logout")
