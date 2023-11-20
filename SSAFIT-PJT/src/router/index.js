@@ -15,6 +15,15 @@ import ReviewUpdate from "@/components/review/ReviewUpdate.vue";
 import UserRegist from "@/components/user/UserRegist.vue";
 import UserLogin from "@/components/user/UserLogin.vue";
 
+import ShoppingView from "@/views/ShoppingView.vue";
+
+import CommunityView from "@/views/CommunityView.vue";
+import CommunityList from "@/components/community/CommunityList.vue";
+import CommunityCreate from "@/components/community/CommunityCreate.vue";
+import CommunityDetail from "@/components/community/CommunityDetail.vue";
+import CommunityUpdate from "@/components/community/CommunityUpdate.vue";
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
