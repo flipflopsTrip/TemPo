@@ -3,7 +3,7 @@
     <h3>ShoppingList</h3>
     <ShoppingListItem
       v-for="product in store.products"
-      :key="product.rss.channel.item.productId"
+      :key="product.productId"
       :product="product"
     />
   </div>

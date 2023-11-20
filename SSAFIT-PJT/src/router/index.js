@@ -19,6 +19,12 @@ import ShoppingList from "@/components/shopping/ShoppingList.vue";
 import ShoppingSearch from "@/components/shopping/ShoppingSearch.vue";
 import ShoppingListItem from "@/components/shopping/ShoppingListItem.vue";
 
+import BoardView from "@/views/CommunityView.vue";
+import BoardList from "@/components/community/CommunityList.vue";
+import BoardCreate from "@/components/community/CommunityCreate.vue";
+import BoardDetail from "@/components/community/CommunityDetail.vue";
+import BoardUpdate from "@/components/community/CommunityUpdate.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -89,6 +95,34 @@ const router = createRouter({
       path: "/shopping",
       // name: "Shopping",
       component: ShoppingView,
+    },
+    //board
+    {
+      path: "/community",
+      name: "community",
+      component: CommunityView,
+      children: [
+        {
+          path: "",
+          name: "communityList",
+          component: CommunityList,
+        },
+        {
+          path: "create",
+          name: "communityCreate",
+          component: CommunityCreate,
+        },
+        {
+          path: ":id",
+          name: "communityDetail",
+          component: CommunityDetail,
+        },
+        {
+          path: "update",
+          name: "communityUpdate",
+          component: CommunityUpdate,
+        },
+      ],
     },
   ],
 });

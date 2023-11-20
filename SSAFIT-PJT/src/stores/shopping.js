@@ -1,5 +1,5 @@
-//import.meta.env.VITE_NAVERSHOP_CLIENT_ID
-//import.meta.env.VITE_NAVERSHOP_CLIENT_SECRET
+//import.meta.env.VITE_SHOPPING_CLIENT_ID
+//import.meta.env.VITE_SHOPPING_CLIENT_SECRET
 
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
@@ -11,8 +11,8 @@ export const useShoppingStore = defineStore("shopping", () => {
 
   const shoppingSearch = function (keyword) {
     const URL = "/api/v1/search/shop.json"; //+encodeURI(keyword.query)
-    const CLIENT_ID = import.meta.env.VITE_SHOPPING_CLIENT_ID;
-    const CLIENT_SECRET = import.meta.env.VITE_SHOPPING_CLIENT_SECRET;
+    const CLIENT_ID = "1Y7M3eCv5_VTxgNp1Ejq";
+    const CLIENT_SECRET = "4Jnzvqh3fX";
     axios
       .get(URL, {
         params: {
