@@ -32,6 +32,7 @@ import VideoView from "./VideoView.vue";
     width: 55vw;
     height: 92vh;
     object-fit: cover;
+    opacity: 0.9;
   }
   .con-child-content {
     display: flex;
@@ -45,13 +46,12 @@ import VideoView from "./VideoView.vue";
   .my-btn {
     border: 0px;
     border-radius: 4px;
-    background-color: #F4CE14;
+    background-color: #FFD717;
     color: #27374D;
     padding: 5px 10px;
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
   }
   .my-btn:hover {
-    background-color: #ffdb26;
     transition: background-color 0.3s, color 0.3s;
     transform: scale(1.1);
     animation: pulse 1.2s infinite;

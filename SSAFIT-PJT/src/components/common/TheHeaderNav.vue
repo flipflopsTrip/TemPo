@@ -72,4 +72,8 @@ header span {
   width: 110px;
   color: white;
 }
+.router-link-active {
+  /* background: linear-gradient(to top, #FFD717 8%, transparent 8%); */
+  color: #ffdd30;
+}
 </style>
