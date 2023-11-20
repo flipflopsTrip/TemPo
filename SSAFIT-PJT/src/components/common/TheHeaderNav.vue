@@ -45,7 +45,7 @@ router.beforeEach(async (to, from, next) => {
 <style scoped>
 header {
   height: 70px;
-  background-color: #53e3a6;
+  background-color: #27374D;
   line-height: 70px;
   padding: 0px 30px;
 }

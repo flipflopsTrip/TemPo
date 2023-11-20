@@ -25,8 +25,8 @@
       <button @click="login" class="btn btn-primary">로그인</button>
       <div class="or-seperator"><i>또는</i></div>
       <div class="text-center social-btn">
-        <a href="#" class="btn btn-danger"><i class="bi bi-google"></i>&nbsp; Google</a>
-        <a href="#" class="btn btn-primary">&nbsp; Kakao</a>
+        <img src="@/assets/googleLoginImg.png" alt="구글로그인">
+        <img src="@/assets/kakaoLoginImg.png" alt="카카오로그인">
       </div>
     </div>
   </div>
@@ -127,6 +127,11 @@ const login = function() {
   .social-btn .btn-danger {
     background: #df4930;
   } 
+  .social-btn > img {
+    width: fit-content;
+    cursor: pointer;
+    padding: 8px;
+  }
   .or-seperator {
     margin-top: 40px;
     text-align: center;
