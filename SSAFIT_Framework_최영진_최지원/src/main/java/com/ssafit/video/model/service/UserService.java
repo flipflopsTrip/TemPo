@@ -13,5 +13,12 @@ public interface UserService {
 	List<User> selectAll();
 
 	User selectOne(String id);
+
+	String getUserId(User user);
+
+	User getUserForPw(User user);
+
+	boolean modifyPw(User user);
+
 	
 }

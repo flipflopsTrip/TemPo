@@ -14,6 +14,8 @@ import ReviewUpdate from "@/components/review/ReviewUpdate.vue";
 
 import UserRegist from "@/components/user/UserRegist.vue";
 import UserLogin from "@/components/user/UserLogin.vue";
+import UserFindId from "@/components/user/UserFindId.vue";
+import UserFindPassword from "@/components/user/UserFindPassword.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -78,6 +80,16 @@ const router = createRouter({
       path: "/login",
       name: "UserLogin",
       component: UserLogin,
+    },
+    {
+      path: "/findId",
+      name: "UserFindId",
+      component: UserFindId,
+    },
+    {
+      path: "/findPw",
+      name: "UserFindPassword",
+      component: UserFindPassword,
     },
   ],
 });

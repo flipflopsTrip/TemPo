@@ -32,8 +32,8 @@
   </div>
 
   <div class="sub-card">
-    <a>아이디 찾기</a><span>&nbsp;|&nbsp;</span> 
-    <a>비밀번호 찾기</a><span>&nbsp;|&nbsp;</span>
+    <RouterLink :to="{ name: 'UserFindId' }">아이디 찾기</RouterLink><span>&nbsp;|&nbsp;</span>
+    <RouterLink :to="{ name: 'UserFindPassword' }">비밀번호 찾기</RouterLink><span>&nbsp;|&nbsp;</span>
     <RouterLink :to="{ name: 'UserRegist' }">회원가입</RouterLink>
   </div>
 </div>

@@ -11,5 +11,11 @@ public interface UserDao {
 	User selectOne(String id);//로그인 시 사용
 
 	List<User> selectAll(); //회원 전체 목록
+
+	String selectId(User user);
+
+	User selectForPw(User user);
+
+	int updatePw(User user);
 	
 }

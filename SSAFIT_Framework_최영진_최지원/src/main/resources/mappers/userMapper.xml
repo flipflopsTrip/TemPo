@@ -20,4 +20,22 @@
 		FROM user
 	</select>
 	
+	<select id="selectId" parameterType="User" resultType="String">
+		select id 
+		from user 
+		where name = #{name} and email = #{email};
+	</select>
+	
+	<select id="selectForPw" parameterType="User" resultType="User">
+		select id, password, name, nickname, email, birth 
+		from user 
+		where id = #{id} and email = #{email};
+	</select>
+	
+	<update id="updatePw" parameterType="User">
+		update user
+		set password = #{password}
+		where id = #{id}
+	</update>
+	
 </mapper>

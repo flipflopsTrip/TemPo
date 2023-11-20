@@ -73,7 +73,7 @@ public class UserRestController {
 		else return new ResponseEntity<Integer>(result, HttpStatus.CREATED);
 	}	
 	
-	@PostMapping("login")
+	@PostMapping("/login")
 	@ApiOperation(value="로그인", notes="아이디와 비밀번호를 이용한 로그인")
 	public ResponseEntity<Map<String, Object>> login(@RequestBody User user) {
 		HttpStatus status = null;
@@ -104,10 +104,46 @@ public class UserRestController {
 		return new ResponseEntity<Map<String, Object>>(result, status);
 	}
 	
-	@GetMapping("logout")
+	@GetMapping("/logout")
 	@ApiOperation(value="로그아웃", notes="세션 소멸을 통한 로그아웃")
 	public ResponseEntity<Void> logout(HttpSession session) {
 		session.invalidate();
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
+	
+	@PostMapping("/find/id")
+	@ApiOperation(value="아이디 찾기", notes="유저 name과 email을 받아서 아이디 반환")
+	public ResponseEntity<String> findId(@RequestBody User user) {
+		String userId = userService.getUserId(user);
+		return new ResponseEntity<String>(userId, HttpStatus.OK);
+	}
+	
+	@PostMapping("/find/pw")
+	@ApiOperation(value="비밀번호 찾기", notes="유저 id과 email을 받아서 유저 반환")
+	public ResponseEntity<User> findPw(@RequestBody User user) {
+		User checkUser = userService.getUserForPw(user);
+		return new ResponseEntity<User>(checkUser, HttpStatus.OK);
+	}
+	
+	@PostMapping("/changePw")
+	@ApiOperation(value="비밀번호 변경", notes="유저 id과 password을 받아서 비밀번호 변경")
+	public ResponseEntity<String> changePw(@RequestBody User user) {
+		System.out.println(user);
+		boolean result = userService.modifyPw(user);
+		if (result) return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		else return new ResponseEntity<String>(FAIL, HttpStatus.OK);
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
