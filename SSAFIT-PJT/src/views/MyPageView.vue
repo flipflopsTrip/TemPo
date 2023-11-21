@@ -47,12 +47,18 @@ import MyPageMain from '@/components/mypage/MyPageMain.vue';
   background-color: #ffffff;
 	flex-basis: 30%;
 	max-width: 250px;
+	min-width: 155px;
 	height: 350px;
 	border: 1px solid #9DB2BF;
 	border-radius: 8px;
 	font-weight: 600;
-	margin: 100px 3% 70px 19%;
+	margin: 100px 3% 70px 17%;
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+@media screen and (max-width: 1023px) {
+  .navigation {
+    margin-left: 3%;
+  }
 }
 .main-content {
   flex-basis: 70%;

@@ -19,7 +19,7 @@ CREATE TABLE `video` (
     `youtuber`    varchar(50)    NOT NULL,
     `url`    varchar(300) NOT NULL,
     `regDate`    datetime default now() NULL,
-    `level`	int	NOT NULL	DEFAULT 0
+	`level`	int	NOT NULL	DEFAULT 0
 );
 
 CREATE TABLE `review` (
@@ -161,7 +161,7 @@ CREATE TABLE `weight` (
 	`weightId`	int	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`userId`	varchar(50)	NOT NULL,
 	`weight`	int	NULL,
-	`regDate`	date	NOT NULL,
+	`regDate`	DATE	NOT NULL,
 	constraint FK_user_tbl_TO_weight_tbl_1
         foreign key (userId)
         references user (id)
@@ -171,6 +171,19 @@ CREATE TABLE `weight` (
 
 insert into user(id, password, name, nickname, email) VALUES ("ssafy","1234","김싸피", "ssafykim", "ssafy@gmail.com");
 insert into user VALUES ("hong","1234","홍길동","2023-03-03", "hongking", "hong@gmail.com");
+insert into user VALUES ("hong2","1234","홍길동2","2023-03-03", "hongk", "hong2@gmail.com");
+
+insert into weight(userId, weight, regDate) 
+	values ("hong",54,"2023-11-01"),
+			("hong",56,"2023-11-02"),
+			("hong",59,"2023-11-03"),
+			("hong",55,"2023-11-04"),
+            ("hong",60,"2023-11-05");
+    
+select weightId, userId, weight, DATE_FORMAT(regDate, '%y/%m/%d') as regDate from weight where userId = 'hong';
 
 select * from user;
+select * from video;
+select * from weight;
+select id from user where name = "홍길동" and email = "hong@gmail.com";
 commit;
