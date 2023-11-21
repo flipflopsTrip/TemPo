@@ -36,17 +36,19 @@ export const useUserStore = defineStore('user', () => {
   const login = function(loginUser) {
     axios.post(`${REST_SSAFIT_API}/login`, loginUser)
     .then((res)=>{
-      if (res.data !== '')  {
+      console.log(res)
+      if (res.data != '')  {
         sessionStorage.setItem('access-token', res.data["access-token"]);
         loginUserId.value = loginUser.id;
         alert('로그인 성공');
-        router.push({name: 'home'});
+        router.go(-1); //뒤로가기(보고있던 페이지로 이동)
       }
       else {
         alert('로그인 실패')
       }
     })
     .catch((err)=>{
+      alert('로그인 실패')
       console.log(err)
     })
   };

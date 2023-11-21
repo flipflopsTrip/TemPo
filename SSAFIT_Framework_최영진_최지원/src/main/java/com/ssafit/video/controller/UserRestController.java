@@ -85,7 +85,7 @@ public class UserRestController {
 				System.out.println("가져온 유저: "+tmp);
 				
 				//가져온 유저 데이터가 null이 아니고 id가 있을 때 -> 로그인 성공
-				if (tmp.getId() != null && tmp.getId().length() > 0) {
+				if (tmp != null && tmp.getId() != null && tmp.getId().length() > 0) {
 					result.put("access-token", jwtUtil.createToken("id", user.getId()));
 					result.put("msg", SUCCESS);
 					//result.put("loginMember", tmp);
@@ -128,7 +128,7 @@ public class UserRestController {
 	@PostMapping("/changePw")
 	@ApiOperation(value="비밀번호 변경", notes="유저 id과 password을 받아서 비밀번호 변경")
 	public ResponseEntity<String> changePw(@RequestBody User user) {
-		System.out.println(user);
+		System.out.println("들어온 유저: "+user);
 		boolean result = userService.modifyPw(user);
 		if (result) return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		else return new ResponseEntity<String>(FAIL, HttpStatus.OK);
