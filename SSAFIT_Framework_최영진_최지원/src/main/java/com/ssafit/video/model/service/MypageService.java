@@ -9,7 +9,7 @@ public interface MypageService {
 
 	List<Weight> getWeight(String userId);
 
-	boolean createWeight(Weight weight);
+	boolean createOrModifyWeight(Weight weight);
 
 	
 	

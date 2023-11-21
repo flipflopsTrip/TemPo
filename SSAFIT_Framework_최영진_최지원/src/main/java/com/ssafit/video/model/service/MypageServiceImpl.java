@@ -24,9 +24,15 @@ public class MypageServiceImpl implements MypageService {
 	
 	@Override
 	@Transactional
-	public boolean createWeight(Weight weight) {
-		if (mypageDao.insertWeight(weight) > 0) return true;
-		else return false;
+	public boolean createOrModifyWeight(Weight weight) {
+		//isCheckNewWeight으로 ==null이면 insert, !=null이면 update
+		if (mypageDao.isCheckNewWeight(weight) == null) {
+			if (mypageDao.insertWeight(weight) > 0) return true;
+			else return false;
+		} else {
+			if (mypageDao.updateWeight(weight) > 0) return true;
+			else return false;
+		}
 	}
 	
 }

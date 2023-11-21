@@ -31,6 +31,6 @@ onMounted(() => {
 	display: inline-block;
 	font-size: 1.8rem;
 	font-weight: 500;
-	background: linear-gradient(to top, #FFD717 15%, transparent 15%);
+	background: linear-gradient(to top, #ffdc30df 15%, transparent 15%);
 }
 </style>

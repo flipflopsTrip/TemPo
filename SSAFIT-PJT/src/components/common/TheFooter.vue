@@ -12,15 +12,19 @@
 
 <style scoped>
 .footer {
-	height: 90px;
-  background-color: #27374D;
-  color: #fff;
+	/* height: 90px; */
+  background-color: rgba(164, 191, 211, 0.29);
+  border-top: 1.5px solid #d1d9e0;
+  color: #27374D;
   text-align: center;
-	bottom: 0;
+  padding: 30px 100px;
 }
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+.container * {
+  font-size: 0.95rem;
+  color: #27374D;
 }
 </style>

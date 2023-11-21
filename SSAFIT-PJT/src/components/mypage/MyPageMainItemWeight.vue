@@ -2,12 +2,12 @@
 	<div class="item profile">
 		<div class="title">몸무게 그래프</div>
 		<div class="weight-con">
-			<div v-if="xData == null">몸무게 정보를 입력해주세요</div>
-			<div class="weight-chart">
+			<div class="d-flex d-flex flex-column justify-content-center align-items-stretch">
+				<div v-if="xData == null">몸무게 정보를 입력해주세요</div>
 				<Line :data="chartData" :options="chartOptions" />
-			</div>
-			<div class="weight-detail">
-				<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#writeWeightModal">몸무게 등록</button>
+				<div class="weight-detail d-flex justify-content-center mt-4">
+					<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#writeWeightModal">몸무게 등록</button>
+				</div>
 			</div>
 
 			<!-- 등록 모달 -->
@@ -64,7 +64,7 @@ ChartJS.register(Title, Tooltip, Legend, ArcElement, LineElement, PointElement, 
 const store = useUserStore();
 onMounted(() => {
 	store.getUser(store.loginUserId); //store.sessionUser
-	getWeight(store.sessionUser.id);
+	getWeight(store.loginUserId);
 });
 
 //유저의 몸무게 데이터 가져오기
@@ -82,8 +82,8 @@ const getWeight = function(userId) {
 		xData.value = xArr;
 		yData.value = yArr;
 
-		maxValue.value = Math.round((Math.max(...yArr)+20)/10)*10;
-		minValue.value = Math.round((Math.min(...yArr)-20)/10)*10; 
+		maxValue.value = Math.round((Math.max(...yArr)+5)/10)*10;
+		minValue.value = Math.round((Math.min(...yArr)-5)/10)*10; 
 	})
 	.catch((err)=>{console.log(err)})
 };
@@ -105,19 +105,19 @@ const chartData = computed(function () {
 	}
 });
 
-const chartOptions = ref({
+const chartOptions = computed(() => ({
   responsive: true,
   maintainAspectRatio: true,
-	scales: {
-      y: {
-        min: minValue.value,
-        max: maxValue.value,
-				ticks: {
-          stepSize: 5
-        },
-      }
-    },
-});
+  scales: {
+    y: {
+      min: minValue.value,
+      max: maxValue.value,
+      ticks: {
+        stepSize: 5
+      },
+    }
+  },
+}));
 
 
 //몸무게 입력
@@ -142,6 +142,8 @@ const writeWeight = function() {
 		if (res.data == 'success') {
 			//성공
 			getWeight(store.sessionUser.id);
+			weight.value = '';
+			date.value = format(new Date());
 		} else {
 			alert('몸무게 등록에 실패했습니다. 다시 시도하여 주세요.')
 		}
@@ -159,7 +161,7 @@ const writeWeight = function() {
 .weight-con {
 	border: 1px solid #9DB2BF;
 	border-radius: 8px;
-	padding: 20px 15px 55px;
+	padding: 20px 15px 35px;
 }
 
 </style>

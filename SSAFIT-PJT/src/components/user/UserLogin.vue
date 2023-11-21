@@ -88,7 +88,7 @@ const login = function() {
     border-top-right-radius: 10px;
   }
   img {
-    width: 120px;
+    width: 130px;
   }
   .form-control {
     border-radius: 5px;

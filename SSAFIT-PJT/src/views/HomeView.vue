@@ -62,8 +62,8 @@ import VideoView from "./VideoView.vue";
   }
   .fade-in-delay {
     opacity: 0;
-    animation: fadeIn 2s ease-in-out forwards;
-    animation-delay: 1.5s;
+    animation: fadeIn 1.0s ease-in-out forwards;
+    animation-delay: 1.2s;
   }
   @keyframes fadeIn {
     from {

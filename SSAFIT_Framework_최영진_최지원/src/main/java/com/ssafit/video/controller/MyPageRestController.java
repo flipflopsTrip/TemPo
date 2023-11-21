@@ -40,9 +40,9 @@ public class MyPageRestController {
 	}
 	
 	@PostMapping("/weight")
-	@ApiOperation(value="몸무게 저장", notes="회원의 몸무게 데이터 저장")
+	@ApiOperation(value="몸무게 저장or수정", notes="회원의 몸무게 데이터 저장 혹은 수정")
 	public ResponseEntity<String> writeWeight(@RequestBody Weight weight) {
-		boolean result = mypageService.createWeight(weight);
+		boolean result = mypageService.createOrModifyWeight(weight);
 		if (result) return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		else return new ResponseEntity<String>(FAIL, HttpStatus.OK);
 	}

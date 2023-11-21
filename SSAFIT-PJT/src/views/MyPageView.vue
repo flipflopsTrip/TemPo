@@ -3,7 +3,8 @@
 		<!-- 네비게이션 -->
 		<div class="item navigation d-flex flex-column justify-content-center">
 			<nav>
-				<RouterLink :to="{ name : 'MyPageMain' }">내 정보 관리</RouterLink>
+				<RouterLink :to="{ name : 'MyPageMain' }"
+				:class="{ 'router-link-active': check === '/mypage' }">내 정보 관리</RouterLink>
 				<a href="#">운동일지</a>
 				<a href="#">좋아요 영상 목록</a>
 				<a href="#">내가 쓴 글</a>
@@ -20,8 +21,9 @@
 
 <script setup>
 import MyPageMain from '@/components/mypage/MyPageMain.vue';
-
-
+import { useRoute, useRouter } from "vue-router";
+const route = useRoute();
+const check = route.path;
 </script>
 
 <style scoped>
@@ -55,7 +57,7 @@ import MyPageMain from '@/components/mypage/MyPageMain.vue';
 	margin: 100px 3% 70px 17%;
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1024px) {
   .navigation {
     margin-left: 3%;
   }
@@ -66,19 +68,23 @@ import MyPageMain from '@/components/mypage/MyPageMain.vue';
 }
 .navigation a {
 	display: block;
-  padding: 15px;
+	padding: 10px 15px;
+	margin: 5px 0px;
   text-decoration: none;
   color: #526D82;
   transition: background-color 0.3s;
-	border-radius: 8px;
+	border-radius: 6px;
+	font-weight: 500;
 }
 .navigation a:hover {
+	font-weight: 600;
 	color: #27374D;
 }
 .navigation .router-link-active {
 	/* background: linear-gradient(to top, #FFD717 8%, transparent 8%); */
-	background-color: #ffdd30;
+	background-color: #ffdc30c0;
 	color: #27374D;
+	font-weight: 600;
 }
 
 </style>

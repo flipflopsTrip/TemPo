@@ -10,4 +10,8 @@ public interface MypageDao {
 
 	int insertWeight(Weight weight);
 
+	Weight isCheckNewWeight(Weight weight);
+
+	int updateWeight(Weight weight);
+
 }

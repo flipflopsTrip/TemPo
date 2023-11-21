@@ -175,12 +175,15 @@ insert into user VALUES ("hong2","1234","홍길동2","2023-03-03", "hongk", "hon
 
 insert into weight(userId, weight, regDate) 
 	values ("hong",54,"2023-11-01"),
-			("hong",56,"2023-11-02"),
-			("hong",59,"2023-11-03"),
-			("hong",55,"2023-11-04"),
-            ("hong",60,"2023-11-05");
+			("hong",60,"2023-11-02"),
+			("hong",63,"2023-11-03"),
+			("hong",59,"2023-11-04"),
+            ("hong",56,"2023-11-05");
     
-select weightId, userId, weight, DATE_FORMAT(regDate, '%y/%m/%d') as regDate from weight where userId = 'hong';
+select weightId, userId, weight, DATE_FORMAT(regDate, '%y.%m.%d') as regDate from weight where userId = 'hong';
+
+select * from weight where userId = 'hong' and regDate = '2023-11-01';
+update weight set weight = '55' where userId = 'hong' and regDate = '2023-11-01';
 
 select * from user;
 select * from video;
