@@ -161,7 +161,7 @@ CREATE TABLE `weight` (
 	`weightId`	int	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`userId`	varchar(50)	NOT NULL,
 	`weight`	int	NULL,
-	`regDate`	timestamp	NOT NULL,
+	`regDate`	date	NOT NULL,
 	constraint FK_user_tbl_TO_weight_tbl_1
         foreign key (userId)
         references user (id)
