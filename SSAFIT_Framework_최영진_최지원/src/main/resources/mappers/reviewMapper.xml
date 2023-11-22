@@ -6,14 +6,14 @@
     
     <!-- 모든 리뷰 가져오기 -->
     <select id="selectAll" parameterType="int" resultType="Review">
-        SELECT reviewId, userId, videoId, title, content, date_format(regDate, '%Y-%M-%d') as regDate, viewCnt
+        SELECT reviewId, userId, videoId, title, content, date_format(regDate, '%Y-%m-%d') as regDate, viewCnt
         FROM review
         WHERE videoId=#{videoId}
     </select>
     
     <!-- id로 리뷰 가져오기 -->
     <select id="selectOne" parameterType="int" resultType="Review">
-        SELECT reviewId, userId, videoId, title, content, date_format(regDate, '%Y-%M-%d') as regDate, viewCnt
+        SELECT reviewId, userId, videoId, title, content, date_format(regDate, '%Y-%m-%d') as regDate, viewCnt
         FROM review
         WHERE reviewId=#{reviewId}
     </select>

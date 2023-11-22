@@ -1,36 +1,39 @@
 <template>
-  <div>
-    <!--마이페이지에서 내가 찜한 영상 목록-->
-    <div>찜한 영상 목록</div>
-    <hr />
-    <table class="table table-hover">
-      <tr class="text-center">
-        <th>비디오 번호</th>
-        <th>제목</th>
-        <th>운동 부위</th>
-        <th>찜한 날짜</th>
-      </tr>
-      <tr
-        v-for="wishVideo in storeW.wishList"
-        :key="wishVideo.wishId"
-        class="text-center"
-      >
-        <td>{{ wishVideo.videoId }}</td>
-        <td>
-          <RouterLink
-            :to="{
-              name: 'videoDetail',
-              params: { videoId: wishVideo.videoId },
-            }"
-            style="color: black; text-decoration: none"
-          >
-            {{ wishVideo.title }}</RouterLink
-          >
-        </td>
-        <td>{{ wishVideo.fitpart }}</td>
-        <!--부위를 가져와-->
-        <td>{{ wishVideo.regDate }}</td>
-      </tr>
+  <!--마이페이지에서 내가 찜한 영상 목록-->
+  <div class="container">
+    <div class="title">찜한 영상 목록</div>
+    <table class="table">
+      <thead>
+        <tr class="text-center">
+          <th>번호</th>
+          <th>제목</th>
+          <th>운동 부위</th>
+          <th>찜한 날짜</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="(wishVideo, index) in storeW.wishList"
+          :key="wishVideo.wishId"
+          class="text-center my-hover"
+        >
+          <td>{{index + 1 }}</td>
+          <td>
+            <RouterLink
+              :to="{
+                name: 'videoDetail',
+                params: { videoId: wishVideo.videoId },
+              }"
+              style="color: black; text-decoration: none"
+            >
+              {{ wishVideo.title }}</RouterLink
+            >
+          </td>
+          <td>{{ wishVideo.fitpart }}</td>
+          <!--부위를 가져와-->
+          <td>{{ wishVideo.regDate }}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
@@ -61,4 +64,18 @@ onMounted(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.container * {
+	letter-spacing: -0.4px;
+}
+.title {
+	display: inline-block;
+	font-size: 1.6rem;
+	font-weight: 500;
+  margin-bottom: 20px;
+	background: linear-gradient(to top, #ffdc30df 15%, transparent 15%);
+}
+tr.my-hover:hover td {
+	background-color: rgba(192, 214, 232, 0.086);
+}
+</style>

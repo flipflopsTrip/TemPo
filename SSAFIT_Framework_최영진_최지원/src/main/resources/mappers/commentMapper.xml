@@ -6,7 +6,7 @@
     
     <!-- 모든 댓글 가져오기 -->
     <select id="selectAll" parameterType="int" resultType="Comment">
-        SELECT commentId, userId, reviewId, content, date_format(regDate, '%Y-%M-%d') as regDate
+        SELECT commentId, userId, reviewId, content, date_format(regDate, '%Y-%m-%d') as regDate
         FROM comment
         WHERE reviewId=#{reviewId}
     </select>

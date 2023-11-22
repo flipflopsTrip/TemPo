@@ -6,7 +6,7 @@
 
 	<!-- 전체 글 조회 -->
 	<select id="selectAll" resultType="Community">
-		SELECT communityId, userId, category, title, content, date_format(regDate, '%Y-%M-%d') as regDate, viewCnt 
+		SELECT communityId, userId, category, title, content, date_format(regDate, '%Y-%m-%d') as regDate, viewCnt 
 		FROM community;
 	</select>
 
@@ -45,7 +45,7 @@
 	
 	<!-- 검색  -->
 	<select id="search" resultType="Community" parameterType="SearchCondition">
-		SELECT communityId, userId, category, title, content, date_format(regDate, '%Y-%M-%d') as regDate, viewCnt 
+		SELECT communityId, userId, category, title, content, date_format(regDate, '%Y-%m-%d') as regDate, viewCnt 
 		FROM community
 		<if test="key != 'none'">
 			WHERE ${key} LIKE concat('%', #{word}, '%')

@@ -6,7 +6,7 @@
     
     <!-- 자유게시판 모든 댓글 가져오기 -->
     <select id="selectAll" parameterType="int" resultType="CReview">
-        SELECT cReviewId, userId, communityId,content, date_format(regDate, '%Y-%M-%d') as regDate
+        SELECT cReviewId, userId, communityId,content, date_format(regDate, '%Y-%m-%d') as regDate
         FROM cReview
         WHERE communityId=#{communityId}
     </select>

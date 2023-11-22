@@ -4,8 +4,13 @@
       <div>
         <RouterLink to="/" class="logo"><img src="@/assets/logo.png" alt="logo" class="logo"></RouterLink>
       </div>
-      <div>
-        <RouterLink to="/video">운동영상</RouterLink>
+      <div class="content-link">
+        <a class="dropdown dropdown-toggle dropdown-con" role="button" data-bs-toggle="dropdown" aria-expanded="false">운동영상</a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><RouterLink to="/video" class="dropdown-item"><span>부위별 운동영상</span></RouterLink></li>
+          <li><RouterLink to="/video" class="dropdown-item"><span>난이도별 운동영상</span></RouterLink></li>
+        </ul>
+        
         <RouterLink to="/community">Community</RouterLink>
         <RouterLink to="/shopping">Shopping</RouterLink>
         <RouterLink to="/kcalCalculator">칼로리 계산기</RouterLink>
@@ -17,8 +22,8 @@
           <span v-if="store.loginUserId" class="">{{ store.sessionUser.nickname }}님 반갑습니다</span>
         </div>
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><RouterLink :to="{ name : 'MyPageMain' }" v-if="store.loginUserId" class="dropdown-item">마이페이지</RouterLink></li>
-          <li><a href="#" v-if="store.loginUserId" @click="logout" class="logout dropdown-item">로그아웃</a></li>
+          <li><RouterLink :to="{ name : 'MyPageMain' }" v-if="store.loginUserId" class="dropdown-item"><span>마이페이지</span></RouterLink></li>
+          <li><a href="#" v-if="store.loginUserId" @click="logout" class="logout dropdown-item"><span>로그아웃</span></a></li>
         </ul>
         
         
@@ -100,6 +105,7 @@ header span {
   border: 1px solid #eee;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.14) 0px 3px 12px;
+  padding: 10px 0px;
 }
 .dropdown-menu li{
   width: 250px;
@@ -107,19 +113,26 @@ header span {
 .dropdown-menu .dropdown-item {
   margin: 0px;
   padding: 0px 10px;
-  
+  height: 50px;
+}
+.dropdown-menu .dropdown-item > span {
+  position: relative;
+    bottom: 10px;
 }
 .dropdown-menu .dropdown-item:active {
   background-color: white;
   color: #27374D;
 }
 .dropdown-menu .dropdown-item:hover {
-  background-color: rgba(164, 191, 211, 0.29);
+  background-color: rgba(182, 206, 223, 0.095);
   color: #27374D
 }
 .dropdown-con {
   color: #27374dea;
   font-weight: 500;
   cursor: pointer;
+}
+.content-link > a{
+  margin: 0px 20px;
 }
 </style>

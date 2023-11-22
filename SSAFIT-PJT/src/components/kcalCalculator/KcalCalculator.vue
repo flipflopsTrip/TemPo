@@ -1,7 +1,7 @@
 <template>
 	<div class="container px-5 mb-5">
 		<div class="title-con">
-			<div class="title">칼로리 계산기</div>
+			<div class="title">칼로리 계산기 <i class="bi bi-calculator"></i></div>
 		</div>
 
 		<!-- 음식 검색 -->
@@ -27,7 +27,7 @@
 					:key="index" 
 					class="result-con d-flex align-items-center justify-content-between">
 					<div class="result-con-item">
-						<div class="result-data"><i class="bi bi-dot"></i>{{ food.DESC_KOR }} (1회 제공량,{{ food.SERVING_WT }}g)</div>
+						<div class="result-data">{{ food.DESC_KOR }} (1회 제공량,{{ food.SERVING_WT }}g)</div>
 						<div class="result-data">
 							<div>칼로리 : {{ food.NUTR_CONT1}}kcal</div><span>|</span>
 							<div>탄수화물 : {{ food.NUTR_CONT2 }}g</div><span>|</span>
@@ -40,7 +40,7 @@
 						</div>
 					</div>
 					<div class="result-con-item">
-						<button class="result-add-btn"><i class="bi bi-plus-lg"></i></button>
+						<button class="result-add-btn" @click="addFood(food)"><i class="bi bi-plus-lg"></i></button>
 					</div>
 				</div>
 				<div v-if="foodList.length == 0" class="result-con result-con-none">검색 결과가 없습니다. 음식을 검색해보세요.</div>
@@ -48,11 +48,12 @@
 			</div>
 			<div class="item-con-cal">
 				<div class="calculator-con">
-					<div class="cal-sum text-center">0 Kcal</div>
-					<div class="cal-food d-flex align-items-center justify-content-evenly">
-						<button><i class="bi bi-x-lg"></i></button>
-						<div>감자 파스타</div>
-						<div>100 Kcal</div>
+					<div class="cal-sum text-center"><span>{{ sumKcal }} Kcal</span></div>
+					<div class="cal-food d-flex align-items-center justify-content-evenly text-center my-3"
+					v-for="(food, index) in sumFoodList" :key="index">
+						<div><button @click="removeFood(index)"><i class="bi bi-x-lg"></i></button></div>
+						<div>{{ food.DESC_KOR }}</div>
+						<div>{{ food.NUTR_CONT1 }} Kcal</div>
 					</div>
 				</div>
 			</div>
@@ -81,12 +82,30 @@ const searchFood = function() {
 		},
 	})
 	.then((res)=>{
-		console.log(res.data)
+		// console.log(res.data)
 		foodList.value = res.data.body.items;
 		totalCnt.value = res.data.body.totalCount;
 	})
 	.catch((err)=>{console.log(err)})
 };
+
+const sumKcal = ref(0);
+const sumFoodList = ref([]);
+
+const addFood = function(food) {
+	sumKcal.value += parseFloat(food.NUTR_CONT1); //칼로리 더하기
+	sumKcal.value = parseFloat(sumKcal.value.toFixed(2));
+	sumFoodList.value = [...sumFoodList.value, food]; //배열에 food 객체 추가
+};
+
+const removeFood = function(index) {
+	const removedFood = sumFoodList.value[index];
+
+  sumKcal.value -= parseFloat(removedFood.NUTR_CONT1);
+  sumKcal.value = parseFloat(sumKcal.value.toFixed(2));
+
+	sumFoodList.value = sumFoodList.value.filter((_, i) => i !== index);
+}
 
 </script>
 
@@ -96,7 +115,7 @@ const searchFood = function() {
 	font-size: 1.8rem;
 	font-weight: 500;
 	margin: 30px 0px 40px;
-	background: linear-gradient(to top, #ffdc30df 15%, transparent 15%);
+	/* background: linear-gradient(to top, #ffdc30df 15%, transparent 15%); */
 }
 .search-con {
 	padding: 15px 30px;
@@ -143,7 +162,6 @@ const searchFood = function() {
 }
 .result-con {
 	border-bottom: 1px solid #9DB2BF;
-	background-color: #f5f5f5;
 }
 .result-con-none {
 	background-color: white;
@@ -182,11 +200,12 @@ const searchFood = function() {
 	border: 1px solid #ddd;
 	border-radius: 6px;
 	min-height: 300px;
+	padding: 10px 15px;
 }
 .calculator-con .cal-sum {
-	font-size: 1.5rem;
+	font-size: 1.6rem;
 	font-weight: 600;
-	margin: 15px 0px 40px;
+	margin: 30px 0px 40px;
 }
 .calculator-con .cal-food button {
 	border: 1px solid #ddd;
@@ -199,5 +218,17 @@ const searchFood = function() {
 	position: relative;
 	right: 4px;
 	bottom: 4px;
+}
+.cal-food > div:nth-child(1) {
+	flex: 20;
+}
+.cal-food > div:nth-child(2) {
+	flex: 40;
+}
+.cal-food > div:nth-child(3) {
+	flex: 40;
+}
+.calculator-con .cal-sum > span {
+	background: linear-gradient(to top, #ffdc30df 15%, transparent 15%);
 }
 </style>

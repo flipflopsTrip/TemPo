@@ -1,12 +1,16 @@
 <template>
-	<div>
+	<div class="container">
 		<header>
       <h2>Fitness Videos</h2>
     </header>
 
 		<div class="btn-container">
-			<button @click="loadVideos('전체')" class="btn btn-primary">전체</button>
-			<button @click="loadVideos('상체')" class="btn btn-primary">상체</button>
+			<button @click="loadVideos('전체')" class="btn btn-warning">전체</button>
+			<button @click="loadVideos('상체')" class="btn btn-warning">상체</button>
+			<button @click="loadVideos('하체')" class="btn btn-warning">하체</button>
+			<button @click="loadVideos('전신')" class="btn btn-warning">전신</button>
+			<button @click="loadVideos('교정')" class="btn btn-warning">교정</button>
+			<button @click="loadVideos('스트레칭')" class="btn btn-warning">스트레칭</button>
 		</div>
 
     <div class="video-container">

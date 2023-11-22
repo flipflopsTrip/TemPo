@@ -7,9 +7,8 @@
     </div>
     <div class="con-child con-child-content fade-in-delay">
       <div class="discribe">
-        <div>한줄설명</div>
-        <div>:ssafit은 어쩌구저쩌구 길게 설명</div>
-        <button class="my-btn">운동하러 가기</button>
+        <div>Tempo는 건강한 라이프스타일을 위한 핵심 정보를 제공합니다. "운동의 템포"에 딱 맞는 정보로 여러분의 건강한 삶을 돕고자 합니다. 템포와 함께, 더 건강하고 활기찬 삶의 시작을 만나보세요!</div>
+        <button class="my-btn">운동하러 가기 <i class="bi bi-fire"></i></button>
       </div>
     </div>
 
@@ -42,6 +41,11 @@ import VideoView from "./VideoView.vue";
   }
   .discribe {
     padding-left: 40px;
+    width: 59%;
+    text-align: justify;
+  }
+  .discribe > div {
+    margin-bottom: 10px;
   }
   .my-btn {
     border: 0px;
@@ -49,6 +53,7 @@ import VideoView from "./VideoView.vue";
     background-color: #FFD717;
     color: #27374D;
     padding: 5px 10px;
+    height: 40px;
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
   }
   .my-btn:hover {

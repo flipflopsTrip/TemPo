@@ -5,9 +5,10 @@
 <mapper namespace="com.ssafit.video.model.dao.WishDao">
     
     <select id="selectWishList" parameterType="String" resultType="Video">
-    	SELECT videoId, title, url, fitpart, youtuber, viewCnt, date_format(regDate, '%Y-%M-%d') as regDate 
+		SELECT video.videoId, title, url, fitpart, youtuber, viewCnt, date_format(wish.regDate, '%Y-%m-%d') as regDate
 		FROM video
-		WHERE videoId IN (SELECT videoId FROM wish WHERE userId=#{userId})
+		INNER JOIN wish ON video.videoId = wish.videoId
+		WHERE wish.userId = #{userId};
     </select>
     
     <select id="isWish" parameterType="Wish" resultType="int">

@@ -54,7 +54,7 @@ public class UserRestController {
 	public ResponseEntity<User> selectOne(@PathVariable String id) {
 		HttpStatus status = null;
 		User user = userService.selectOne(id);
-		System.out.println(user);
+//		System.out.println(user);
 		
 		if (user != null) status = HttpStatus.OK; 
 		else status = HttpStatus.NO_CONTENT;

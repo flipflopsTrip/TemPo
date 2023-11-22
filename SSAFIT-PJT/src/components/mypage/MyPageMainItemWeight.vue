@@ -129,13 +129,13 @@ const format = (date) => {
 	date.value  = `${year}-${month}-${day}`;
   return date.value;
 }
-const date = ref(format(new Date())); //기본값은 현재 날짜로
+const date = ref((new Date())); //기본값은 현재 날짜로
 
 const writeWeight = function() {
 	const weightData = ref({
 		userId: store.loginUserId,
 		weight: weight.value,
-		regDate: date.value,
+		regDate: format(date.value),
 	})
 	axios.post(`http://localhost:8080/api-mypage/weight`, weightData.value)
 	.then((res)=>{
