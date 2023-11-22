@@ -135,7 +135,7 @@ const writeWeight = function() {
 	const weightData = ref({
 		userId: store.loginUserId,
 		weight: weight.value,
-		regDate: format(date.value),
+		regDate: date.value,
 	})
 	axios.post(`http://localhost:8080/api-mypage/weight`, weightData.value)
 	.then((res)=>{

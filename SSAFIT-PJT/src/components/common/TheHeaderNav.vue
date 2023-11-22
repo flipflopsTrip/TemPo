@@ -3,9 +3,12 @@
     <nav class="header-nav">
       <div>
         <RouterLink to="/" class="logo"><img src="@/assets/logo.png" alt="logo" class="logo"></RouterLink>
+      </div>
+      <div>
         <RouterLink to="/video">운동영상</RouterLink>
         <RouterLink to="/community">Community</RouterLink>
         <RouterLink to="/shopping">Shopping</RouterLink>
+        <RouterLink to="/kcalCalculator">칼로리 계산기</RouterLink>
       </div>
       <div>
         <RouterLink :to="{ name : 'UserLogin' }" v-if="!store.loginUserId">로그인</RouterLink>
@@ -14,7 +17,7 @@
           <span v-if="store.loginUserId" class="">{{ store.sessionUser.nickname }}님 반갑습니다</span>
         </div>
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><RouterLink :to="{ name : 'MyPage' }" v-if="store.loginUserId" class="dropdown-item">마이페이지</RouterLink></li>
+          <li><RouterLink :to="{ name : 'MyPageMain' }" v-if="store.loginUserId" class="dropdown-item">마이페이지</RouterLink></li>
           <li><a href="#" v-if="store.loginUserId" @click="logout" class="logout dropdown-item">로그아웃</a></li>
         </ul>
         
@@ -90,13 +93,13 @@ header span {
   /* background: linear-gradient(to top, #FFD717 8%, transparent 8%); */
   /* color: #ffdd30; */
   color: #27374D !important;
-  font-size: 1.13rem !important;
-  font-weight: 600;
+  font-weight: 700;
 }
 .dropdown-menu {
   width: 250;
-  border: 0px solid;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.14) 0px 3px 12px;
 }
 .dropdown-menu li{
   width: 250px;
@@ -104,14 +107,18 @@ header span {
 .dropdown-menu .dropdown-item {
   margin: 0px;
   padding: 0px 10px;
+  
 }
 .dropdown-menu .dropdown-item:active {
   background-color: white;
+  color: #27374D;
+}
+.dropdown-menu .dropdown-item:hover {
+  background-color: rgba(164, 191, 211, 0.29);
   color: #27374D
 }
 .dropdown-con {
   color: #27374dea;
-  font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
 }

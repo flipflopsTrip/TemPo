@@ -3,8 +3,7 @@
 		<!-- 네비게이션 -->
 		<div class="item navigation d-flex flex-column justify-content-center">
 			<nav>
-				<RouterLink :to="{ name : 'MyPageMain' }"
-				:class="{ 'router-link-active': check === '/mypage' }">내 정보 관리</RouterLink>
+				<RouterLink :to="{ name : 'MyPageMain' }">내 정보 관리</RouterLink>
 				<a href="#">운동일지</a>
 				<RouterLink :to="{ name : 'wishList' }">좋아요 영상 목록</RouterLink>
 				<a href="#">내가 쓴 글</a>
@@ -13,7 +12,8 @@
 		</div>
 
 		<div class="item main-content">
-			<MyPageMain/>
+			<!-- <MyPageMain/> -->
+			<RouterView/>
     </div>
 
 	</div>
@@ -21,9 +21,9 @@
 
 <script setup>
 import MyPageMain from '@/components/mypage/MyPageMain.vue';
+import wishList from '@/components/wish/wishList.vue';
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
-const check = route.path;
 </script>
 
 <style scoped>
@@ -80,9 +80,9 @@ const check = route.path;
 	font-weight: 600;
 	color: #27374D;
 }
-.navigation .router-link-active {
+.navigation .router-link-exact-active {
 	/* background: linear-gradient(to top, #FFD717 8%, transparent 8%); */
-	background-color: #ffdc30c0;
+	background-color: #ffdc30dc;
 	color: #27374D;
 	font-weight: 600;
 }

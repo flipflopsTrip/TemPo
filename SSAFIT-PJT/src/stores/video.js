@@ -35,7 +35,7 @@ export const useVideoStore = defineStore('video', () => {
     axios.post(`${REST_SSAFIT_API}/check`, video.url)
     .then((res)=>{
       if (res.data != '') { //db에 이미 들어있는 영상
-        console.log("2. check: (t)"+res.data)
+        console.log("2. check:(존재하는 영상)"+res.data)
         console.log("비디오아이디(pk): "+res.data.videoId)
         clickedVideo.value = res.data;
         //detail로 router push

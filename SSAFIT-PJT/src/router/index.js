@@ -30,6 +30,8 @@ import wishList from "@/components/wish/wishList.vue";
 import MyPageView from "@/views/MyPageView.vue";
 import MyPageMain from "@/components/mypage/MyPageMain.vue";
 
+import KcalCalculator from "@/components/kcalCalculator/KcalCalculator.vue";
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -142,13 +144,6 @@ const router = createRouter({
       ],
     },
 
-    //wishList
-    {
-      path: "/wishList",
-      name: "wishList",
-      component: wishList,
-    },
-
     //mypage
     {
       path: "/mypage",
@@ -160,9 +155,20 @@ const router = createRouter({
           name: "MyPageMain",
           component: MyPageMain,
         },
+        {
+          path: "wishList",
+          name: "wishList",
+          component: wishList,
+        },
       ],
     },
 
+    //kcal Calculator
+    {
+      path: "/kcalCalculator",
+      name: "KcalCalculator",
+      component: KcalCalculator,
+    },
 
   ], //close
 }); //close

@@ -92,7 +92,7 @@ const goBack = () => {
 const videoIdd = route.params.videoId;
 onMounted(() => {
   if (videoIdd) {
-    store.getVideo(videoIdd);
+    // store.getVideo(videoIdd);
     // storeR.getReviewList(videoIdd);
   }
   storeR.getReviewList(store.clickedVideo.videoId);
