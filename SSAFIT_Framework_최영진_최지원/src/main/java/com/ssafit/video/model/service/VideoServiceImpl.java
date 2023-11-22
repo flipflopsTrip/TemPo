@@ -1,6 +1,5 @@
 package com.ssafit.video.model.service;
 
-import java.lang.annotation.Target;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

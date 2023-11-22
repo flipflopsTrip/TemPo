@@ -38,10 +38,10 @@ public class ReviewRestController {
         return new ResponseEntity<List<Review>>(list, HttpStatus.OK);
     }
     
-    @GetMapping("/review/{id}")
+    @GetMapping("/review/{reviewId}")
     @ApiOperation(value="리뷰 상세 조회", notes="리뷰 상세 조회")
-    public ResponseEntity<?> getReview(@PathVariable int id){
-        Review review = reviewService.getReview(id);
+    public ResponseEntity<?> getReview(@PathVariable int reviewId){
+        Review review = reviewService.getReview(reviewId);
         if (review == null) return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<Review>(review, HttpStatus.OK);
     }

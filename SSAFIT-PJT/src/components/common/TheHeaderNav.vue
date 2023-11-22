@@ -4,6 +4,8 @@
       <div>
         <RouterLink to="/" class="logo"><img src="@/assets/logo.png" alt="logo" class="logo"></RouterLink>
         <RouterLink to="/video">운동영상</RouterLink>
+        <RouterLink to="/community">Community</RouterLink>
+        <RouterLink to="/shopping">Shopping</RouterLink>
       </div>
       <div>
         <RouterLink :to="{ name : 'UserLogin' }" v-if="!store.loginUserId">로그인</RouterLink>

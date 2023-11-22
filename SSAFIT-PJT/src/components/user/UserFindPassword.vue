@@ -28,23 +28,24 @@
 		<!-- index.js 추가 -->
 		<div class="regist-title">비밀번호 변경하기</div>
 		<div class="input-con row mb-4">
-				<label for="password" class="col-sm-2 form-label">변경할 비밀번호</label>
-				<div class="col-sm-10">
+			<label for="password" class="col-sm-3 form-label">변경할 비밀번호</label>
+			<div class="col-sm-9">
 					<input class="form-control" type="password" id="password" placeholder="비밀번호를 입력하세요" required
 					v-model="password"
 					:class="{'is-valid' : isValidPw, 'is-invalid' : !isValidPw}">
 					<div v-if="isValidPw" class="form-text pw-text">사용할 수 있는 비밀번호입니다</div>
 					<div v-else="!isValidPw" class="form-text pw-text">영문자, 숫자 및 특수문자(@&!%*#?&) 조합의 6~20자리를 사용하세요</div>
-					
-					<label for="password" class="col-sm-2 form-label">비밀번호 확인</label>
-					<input class="form-control" type="password" id="passwordCheck" placeholder="비밀번호 재확인" required
-					v-model="passwordCheck"
-					@keyup.enter="changePw"
-					:class="{'is-valid' : isSamePw, 'is-invalid' : !isSamePw}">
-					<div v-if="isSamePw" class="form-text">비밀번호가 일치합니다.</div>
-					<div v-else="!isSamePw" class="form-text">비밀번호가 일치하지 않습니다</div>
-				</div>
 			</div>
+			<label for="password" class="col-sm-3 form-label">비밀번호 확인</label>
+			<div class="col-sm-9">
+				<input class="form-control" type="password" id="passwordCheck" placeholder="비밀번호 재확인" required
+				v-model="passwordCheck"
+				@keyup.enter="changePw"
+				:class="{'is-valid' : isSamePw, 'is-invalid' : !isSamePw}">
+				<div v-if="isSamePw" class="form-text">비밀번호가 일치합니다.</div>
+				<div v-else="!isSamePw" class="form-text">비밀번호가 일치하지 않습니다</div>
+			</div>
+		</div>
 		<div class="d-grid">
 				<button class="btn btn-primary"
 					@click="changePw"
@@ -144,7 +145,7 @@ const changePw = function() {
 		margin: 0 auto;
 		width: 45%;
 		min-width: 500px;
-		max-width: 33%;
+		max-width: 35%;
 		letter-spacing: -0.3px;
 		margin: 30px auto;
 		border-radius: 10px;
@@ -160,6 +161,9 @@ const changePw = function() {
 		border-style: solid;
 	}
 	.d-grid {
-		margin: 40px 0px 40px;
+		margin: 20px 0px 40px;
+	}
+	.pw-text {
+		margin-bottom: 25px;
 	}
 </style>

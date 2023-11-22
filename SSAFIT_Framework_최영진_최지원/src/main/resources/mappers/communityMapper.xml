@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafit.video.model.dao.CommunityDao">
+
+	<!-- 전체 글 조회 -->
+	<select id="selectAll" resultType="Community">
+		SELECT communityId, userId, category, title, content, date_format(regDate, '%Y-%M-%d') as regDate, viewCnt 
+		FROM community;
+	</select>
+
+	<!-- 글 상세 조회 -->
+	<select id="selectOne" resultType="Community" parameterType="int">
+		SELECT *
+		FROM community
+		WHERE communityId = #{communityId};
+	</select>
+
+	<!-- 게시글 등록 -->
+	<insert id="insertCommunity" parameterType="Community" keyProperty="communityId" useGeneratedKeys="true">
+		INSERT INTO community (userId, category, title,  content)
+		VALUES (#{userId}, #{category},  #{title},  #{content})
+	</insert>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteCommunity" parameterType="int">
+		DELETE FROM community
+		WHERE communityId = #{communityId}
+	</delete>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateViewCnt" parameterType="int">
+		UPDATE community
+		SET viewCnt = viewCnt+1
+		WHERE communityId = #{communityId}
+	</update>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateCommunity" parameterType="Community">
+		UPDATE community
+		SET category = #{category}, title = #{title}, content = #{content}, regDate = now()
+		WHERE communityId = #{communityId}
+	</update>
+	
+	<!-- 검색  -->
+	<select id="search" resultType="Community" parameterType="SearchCondition">
+		SELECT communityId, userId, category, title, content, date_format(regDate, '%Y-%M-%d') as regDate, viewCnt 
+		FROM community
+		<if test="key != 'none'">
+			WHERE ${key} LIKE concat('%', #{word}, '%')
+		</if>
+		<if test="orderBy != 'none'">
+			ORDER BY ${orderBy} ${orderByDir}
+		</if>
+	</select>
+</mapper>

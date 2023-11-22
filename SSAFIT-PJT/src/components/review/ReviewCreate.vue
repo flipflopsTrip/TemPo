@@ -8,11 +8,6 @@
         <input type="text" id="title" v-model="review.title" />
       </div>
       <div>
-        <label for="userId">작성자 : </label>
-        <!-- 확인용으로 disabled 걸어놨음. 나중에 작성자 input 지우면 됨 -->
-        <input type="text" id="userId" v-model="review.userId" disabled/>
-      </div>
-      <div>
         <label for="content">내용 : </label>
         <textarea
           id="content"
@@ -22,7 +17,12 @@
         ></textarea>
       </div>
       <div>
-        <button @click="createReview">등록</button>
+        <button type="button" class="btn btn-primary" @click="createReview">
+          등록</button
+        >&nbsp&nbsp&nbsp&nbsp
+        <button type="button" class="btn btn-danger" @click="goBack">
+          취소
+        </button>
       </div>
     </fieldset>
   </div>
@@ -30,13 +30,13 @@
 
 <script setup>
 import { ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useReviewStore } from "@/stores/review";
-import {useUserStore} from "@/stores/user"
+import { useUserStore } from "@/stores/user";
 
 const storeR = useReviewStore();
 const storeU = useUserStore(); //로그인한 유저의 아이디를 가져오기 위해서 추가
-
+const router = useRouter();
 const review = ref({
   videoId: "",
   title: "",
@@ -48,6 +48,9 @@ const createReview = function () {
   //stores의 review.js에서 createReview는 인자로 review와 videoId를 가짐
   review.value.videoId = videoId;
   storeR.createReview(review.value, videoId);
+};
+const goBack = () => {
+  router.back();
 };
 </script>
 

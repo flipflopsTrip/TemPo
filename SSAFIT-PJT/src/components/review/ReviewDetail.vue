@@ -1,29 +1,73 @@
 <!--게시글 상세로 넘어가면 수정, 삭제, 목록 버튼-->
 <template>
   <div>
-    <h4>리뷰 상세</h4>
-    <hr />
-    <div>{{ store.review.title }}</div>
-    <div>{{ store.review.userId }}</div>
-    <div>{{ store.review.regDate }}</div>
-    <div>{{ store.review.viewCnt }}</div>
-    <div>{{ store.review.content }}</div>
-    <button @click="updateReview">수정</button>
-    <button @click="deleteReview">삭제</button>
+    <div
+      class="card"
+      style="width: 70%; display: block; justify-content: center"
+    >
+      <div class="card-header" style="text-align: left">
+        <div>{{ storeR.review.userId }}</div>
+      </div>
+      <div class="card-body">
+        <div
+          class="container"
+          style="display: flex; justify-content: space-between"
+        >
+          <h3 class="card-title">{{ storeR.review.title }}</h3>
+          <div class="container" style="display: block; text-align: right">
+            <div>{{ storeR.review.regDate }}</div>
+            <div>{{ storeR.review.viewCnt }}</div>
+            <div>{{ storeR.review.content }}</div>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between">
+          <button type="button" class="btn btn-secondary" @click="goBack">
+            뒤로가기
+          </button>
+          <div v-if="storeU.loginUserId === storeR.review.userId">
+            <button type="button" class="btn btn-primary" @click="updateReview">
+              수정</button
+            >&nbsp&nbsp&nbsp&nbsp
+            <button type="button" class="btn btn-danger" @click="deleteReview">
+              삭제
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <commentCreate :reviewId="reviewId" /><!--댓글 작성-->
+      <commentList
+        :reviewId="reviewId"
+        @update-comment-list="updateCommentList"
+      /><!--댓글 목록-->
+    </div>
   </div>
 </template>
 
 <script setup>
 import { useRoute, useRouter } from "vue-router";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import axios from "axios";
 import { useReviewStore } from "@/stores/review";
+import { useCommentStore } from "@/stores/comment";
+import { useUserStore } from "@/stores/user";
+import commentCreate from "../comment/commentCreate.vue";
+import commentList from "../comment/commentList.vue";
 
-const store = useReviewStore();
+const storeR = useReviewStore();
+const storeC = useCommentStore();
+const storeU = useUserStore();
 const route = useRoute();
 const router = useRouter();
+const reviewId = route.params.reviewId;
+
+const goBack = () => {
+  router.go(-1);
+};
+
 onMounted(() => {
-  store.getReview(route.params.reviewId);
+  storeR.getReview(reviewId);
 });
 //update
 const updateReview = function () {
@@ -37,12 +81,16 @@ const deleteReview = function () {
     .then(() => {
       router.push({
         name: "videoDetail",
-        params: { videoId: store.review.videoId },
+        params: { videoId: storeR.review.videoId },
       });
     })
     .catch((err) => {
       console.log(err);
     });
+};
+
+const updateCommentList = () => {
+  storeC.getCommentList(reviewId);
 };
 </script>
 

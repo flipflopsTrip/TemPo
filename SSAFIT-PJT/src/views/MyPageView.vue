@@ -6,7 +6,7 @@
 				<RouterLink :to="{ name : 'MyPageMain' }"
 				:class="{ 'router-link-active': check === '/mypage' }">내 정보 관리</RouterLink>
 				<a href="#">운동일지</a>
-				<a href="#">좋아요 영상 목록</a>
+				<RouterLink :to="{ name : 'wishList' }">좋아요 영상 목록</RouterLink>
 				<a href="#">내가 쓴 글</a>
 				<a href="#">내가 쓴 댓글</a>
 			</nav>

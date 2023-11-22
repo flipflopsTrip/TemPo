@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafit.video.model.dao.CommentDao">
+    
+    <!-- 모든 댓글 가져오기 -->
+    <select id="selectAll" parameterType="int" resultType="Comment">
+        SELECT commentId, userId, reviewId, content, date_format(regDate, '%Y-%M-%d') as regDate
+        FROM comment
+        WHERE reviewId=#{reviewId}
+    </select>
+
+    
+    <!-- 댓글 등록하기 -->
+    <insert id="insertComment" parameterType="Comment" keyProperty="commentId" useGeneratedKeys="true">
+        INSERT INTO comment (userId, reviewId, content)
+        VALUES (#{userId}, #{reviewId}, #{content})
+    </insert>
+    
+    <!-- 댓글 수정하기 -->
+    <update id="updateComment" parameterType="Comment">
+        UPDATE comment
+        SET content=#{content}, regDate = now()
+        WHERE commentId=#{commentId}
+    </update>
+    
+    <!-- 댓글 삭제하기 -->
+    <delete id="deleteComment" parameterType="int">
+        DELETE FROM comment
+        WHERE commentId=#{commentId}
+    </delete>
+
+</mapper>

@@ -10,14 +10,16 @@ public class Community {
 	private String title;
 	private String content;
 	private String regDate;
+	private int viewCnt;
 	
 	public Community() { }
 
-	public Community(String userId, String category, String title, String content) {
+	public Community(String userId, String category, String title, String content, int viewCnt) {
 		this.userId = userId;
 		this.category = category;
 		this.title = title;
 		this.content = content;
+		this.viewCnt = viewCnt;
 	}
 
 	public int getCommunityId() {
@@ -67,12 +69,20 @@ public class Community {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
+	
+    public int getViewCnt() {
+        return viewCnt;
+    }
+
+//    public void setViewCnt(int viewCnt) {
+//        this.viewCnt = viewCnt;
+//    }
 
 	@Override
 	public String toString() {
 		return "Community [communityId=" + communityId + ", userId=" + userId + ", category=" + category + ", title="
-				+ title + ", content=" + content + ", regDate=" + regDate + "]";
+				+ title + ", content=" + content + ", regDate=" + regDate + ", viewCnt=" + viewCnt + "]";
 	}
-	
+
 	
 }

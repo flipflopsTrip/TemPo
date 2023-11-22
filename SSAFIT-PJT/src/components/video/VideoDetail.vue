@@ -16,12 +16,33 @@
     </div>
 
     <div>
+      <wish :videoId="videoIdd" />
+    </div>
+    <div>
+      <!--난이도 투표-->
+      <!-- <levelVote :videoId="store.clickedVideo.videoId" /> -->
+    </div>
+
+    <div>
       <h3>리뷰 목록</h3>
       <hr />
-      <div>
-        <RouterLink :to="{ name: 'ReviewCreate' }">리뷰 작성</RouterLink>
+      <div style="display: flex; justify-content: space-between">
+        <button type="button" class="btn btn-secondary" @click="goBack">
+          목록
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          style="text-decoration-color: white"
+        >
+          <RouterLink
+            :to="{ name: 'ReviewCreate' }"
+            style="color: white; text-decoration: none"
+            >리뷰 작성</RouterLink
+          >
+        </button>
       </div>
-      <table>
+      <table class="table table-hover">
         <tr>
           <th>번호</th>
           <th>제목</th>
@@ -50,6 +71,8 @@ import { onMounted, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useVideoStore } from "@/stores/video";
 import { useReviewStore } from "@/stores/review";
+import wish from "@/components/wish/wish.vue";
+import levelVote from "@/components/levelVote/levelVote.vue";
 
 const store = useVideoStore();
 const storeR = useReviewStore();
@@ -61,10 +84,24 @@ const videoURL = computed(()=>{
 	return `https://www.youtube.com/embed/${videoId}`;
 });
 
+const goBack = () => {
+  router.push("/video");
+};
+
+//아직 clickVideo를 처리하지 못한 상태일 수 있기 때문에 처리 후 videoId 받아 사용할 수 있게 if문으로 수정
+const videoIdd = route.params.videoId;
 onMounted(() => {
-	storeR.getReviewList(store.clickedVideo.videoId);
+  if (videoIdd) {
+    store.getVideo(videoIdd);
+    // storeR.getReviewList(videoIdd);
+  }
+  storeR.getReviewList(store.clickedVideo.videoId);
 })
 
 </script>
 
-<style scoped></style>
+<style scoped>
+a {
+  text-decoration: none;
+}
+</style>

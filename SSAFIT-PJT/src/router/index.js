@@ -17,6 +17,16 @@ import UserLogin from "@/components/user/UserLogin.vue";
 import UserFindId from "@/components/user/UserFindId.vue";
 import UserFindPassword from "@/components/user/UserFindPassword.vue";
 
+import ShoppingView from "@/views/ShoppingView.vue";
+
+import CommunityView from "@/views/CommunityView.vue";
+import CommunityList from "@/components/community/CommunityList.vue";
+import CommunityCreate from "@/components/community/CommunityCreate.vue";
+import CommunityDetail from "@/components/community/CommunityDetail.vue";
+import CommunityUpdate from "@/components/community/CommunityUpdate.vue";
+
+import wishList from "@/components/wish/wishList.vue";
+
 import MyPageView from "@/views/MyPageView.vue";
 import MyPageMain from "@/components/mypage/MyPageMain.vue";
 
@@ -96,7 +106,50 @@ const router = createRouter({
       component: UserFindPassword,
     },
 
-    //
+    //shopping
+    {
+      path: "/shopping",
+      // name: "Shopping",
+      component: ShoppingView,
+    },
+
+    //community
+    {
+      path: "/community",
+      name: "community",
+      component: CommunityView,
+      children: [
+        {
+          path: "",
+          name: "communityList",
+          component: CommunityList,
+        },
+        {
+          path: "create",
+          name: "communityCreate",
+          component: CommunityCreate,
+        },
+        {
+          path: ":id",
+          name: "communityDetail",
+          component: CommunityDetail,
+        },
+        {
+          path: "update",
+          name: "communityUpdate",
+          component: CommunityUpdate,
+        },
+      ],
+    },
+
+    //wishList
+    {
+      path: "/wishList",
+      name: "wishList",
+      component: wishList,
+    },
+
+    //mypage
     {
       path: "/mypage",
       name: "MyPage",

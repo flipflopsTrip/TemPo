@@ -117,6 +117,7 @@ CREATE TABLE `community` (
 	`title`	varchar(50)	NOT NULL,
 	`content`	varchar(500)	NOT NULL,
 	`regDate`	datetime	NOT NULL	DEFAULT now(),
+        `viewCnt` int not null default 0,
 	constraint FK_member_tbl_TO_community_tbl_1
         foreign key (userId)
         references user (id)
