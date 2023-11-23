@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafit.video.model.dto.Community;
 import com.ssafit.video.model.dto.Weight;
 import com.ssafit.video.model.service.MypageService;
 
@@ -45,6 +46,18 @@ public class MyPageRestController {
 		boolean result = mypageService.createOrModifyWeight(weight);
 		if (result) return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		else return new ResponseEntity<String>(FAIL, HttpStatus.OK);
+	}
+	
+	@PostMapping("/myBoard")
+	@ApiOperation(value="내가 쓴 글", notes="회원이 쓴 글 목록 가져오기")
+	public ResponseEntity<List<Community>> selectCommunity(@RequestBody String userId) {
+		//userId 뒤에 '='가 붙어서 들어오는 것 때문에 substring 사용함
+		String id = userId.substring(0, userId.length()-1);
+		List<Community> communities = mypageService.getCommunity(id);
+		if (communities != null && communities.size() != 0)
+			return new ResponseEntity<List<Community>>(communities, HttpStatus.OK);
+		else 
+			return new ResponseEntity<List<Community>>(communities, HttpStatus.NO_CONTENT);
 	}
 	
 	

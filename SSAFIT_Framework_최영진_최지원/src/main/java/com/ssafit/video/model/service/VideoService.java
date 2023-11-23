@@ -15,4 +15,8 @@ public interface VideoService {
 	Video checkVideo(String videoUrl);
 
 	Video saveVideo(Video video);
+
+	List<Video> getLevelVideo(int level);
+
+	List<Video> getLevelAllVideo();
 }

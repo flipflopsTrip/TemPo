@@ -1,6 +1,6 @@
 <template>
 	<div class="item profile">
-		<div class="title">몸무게 그래프</div>
+		<div class="title">몸무게 그래프 <i class="bi bi-bar-chart-line-fill"></i></div>
 		<div class="weight-con">
 			<div class="d-flex d-flex flex-column justify-content-center align-items-stretch">
 				<div v-if="xData == null">몸무게 정보를 입력해주세요</div>

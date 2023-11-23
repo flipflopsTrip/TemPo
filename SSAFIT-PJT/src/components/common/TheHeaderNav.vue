@@ -8,7 +8,7 @@
         <a class="dropdown dropdown-toggle dropdown-con" role="button" data-bs-toggle="dropdown" aria-expanded="false">운동영상</a>
         <ul class="dropdown-menu dropdown-menu-end">
           <li><RouterLink to="/video" class="dropdown-item"><span>부위별 운동영상</span></RouterLink></li>
-          <li><RouterLink to="/video" class="dropdown-item"><span>난이도별 운동영상</span></RouterLink></li>
+          <li><RouterLink to="/videoLevel" class="dropdown-item"><span>난이도별 운동영상</span></RouterLink></li>
         </ul>
         
         <RouterLink to="/community">Community</RouterLink>
@@ -19,7 +19,7 @@
         <RouterLink :to="{ name : 'UserLogin' }" v-if="!store.loginUserId">로그인</RouterLink>
         <RouterLink :to="{ name: 'UserRegist' }" v-if="!store.loginUserId">회원가입</RouterLink>
         <div class="dropdown dropdown-toggle dropdown-con" data-bs-toggle="dropdown" aria-expanded="false" v-if="store.loginUserId">
-          <span v-if="store.loginUserId" class="">{{ store.sessionUser.nickname }}님 반갑습니다</span>
+          <span v-if="store.loginUserId" class="">{{ store.sessionUser.id }}님 반갑습니다</span>
         </div>
         <ul class="dropdown-menu dropdown-menu-end">
           <li><RouterLink :to="{ name : 'MyPageMain' }" v-if="store.loginUserId" class="dropdown-item"><span>마이페이지</span></RouterLink></li>
@@ -117,15 +117,21 @@ header span {
 }
 .dropdown-menu .dropdown-item > span {
   position: relative;
-    bottom: 10px;
+  bottom: 10px;
 }
 .dropdown-menu .dropdown-item:active {
   background-color: white;
   color: #27374D;
 }
 .dropdown-menu .dropdown-item:hover {
-  background-color: rgba(182, 206, 223, 0.095);
+  background-color: rgba(182, 206, 223, 0.205);
   color: #27374D
+}
+.dropdown-menu > li > .router-link-active > span {
+  font-weight: 600;
+}
+.dropdown-menu > li > .router-link-active {
+  background-color: rgba(182, 206, 223, 0.205);
 }
 .dropdown-con {
   color: #27374dea;

@@ -46,7 +46,6 @@ public class CommunityRestController {
 	@ApiOperation(value="게시글 상세 조회", notes="게시글 상세 조회")
 	public ResponseEntity<Community> detail(@PathVariable int id){
 		Community community = communityService.getCommunity(id);
-		System.out.println(community+"=========");
 		return new ResponseEntity<Community>(community, HttpStatus.OK);
 	}
 	
@@ -54,7 +53,6 @@ public class CommunityRestController {
 	@PostMapping("/community")///{communityId}
 	@ApiOperation(value="게시글 등록", notes="게시글 등록")
 	public ResponseEntity<?> write(@RequestBody Community community){ //, @PathVariable int communityId
-		System.out.println(community+"=========");
 		int result = communityService.writeCommunity(community);
 		if (result == 0) return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		return new ResponseEntity<Community>(communityService.getCommunity(community.getCommunityId()), HttpStatus.CREATED);
@@ -73,7 +71,6 @@ public class CommunityRestController {
 	@PutMapping("/community")
 	@ApiOperation(value="게시글 수정", notes="게시글 수정")
 	public ResponseEntity<?> update(@RequestBody Community community){//, @PathVariable int communityId
-		System.out.println(community);
 		communityService.modifyCommunity(community);
 		return new ResponseEntity<Integer>(community.getCommunityId(),HttpStatus.OK);
 	}

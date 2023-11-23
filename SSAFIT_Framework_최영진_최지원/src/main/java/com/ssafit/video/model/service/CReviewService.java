@@ -9,4 +9,5 @@ public interface CReviewService {
 	int createCReview(CReview cReview);
 	int updateCReview(CReview cReview);
 	int removeCReview(int cReviewId);
+	List<CReview> getMyCReviewt(String userId);
 }

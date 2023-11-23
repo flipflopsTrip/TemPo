@@ -41,7 +41,7 @@ export const useVideoStore = defineStore('video', () => {
         //detail로 router push
         router.push({name: 'videoDetail', params: { videoId: res.data.videoId}});
       } else { //새 영상
-        console.log("2. check: (f)"+res.data)
+        console.log("2. check:(새 영상)"+res.data)
         axios.post(`${REST_SSAFIT_API}/video`, video)
         .then((res2)=>{
           console.log("3. insert 완료"+res2)
@@ -66,15 +66,29 @@ export const useVideoStore = defineStore('video', () => {
   };
 
   //영상 1개
+  const oneVideo = ref({});
   const getVideo = function(id) {
-    axios.get(`${REST_SSAFIT_API}/${id}`)
+    axios.get(`${REST_SSAFIT_API}/video/${id}`)
     .then((res)=>{
-      video.value = res.data;
+      clickedVideo.value = res.data;
     })
     .catch((err)=>{
       console.log(err)
     })
   };
+  
+  //레벨 별 영상 목록
+  const levelVideos = ref([]);
+  const getLevelVideos = function(level) {
+    axios.get(`${REST_SSAFIT_API}/videoLevel/${level}`)
+    .then((res)=>{
+      levelVideos.value = res.data;
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
 
-  return { videos, youtubeSearch, clickVideo, clickedVideo, videoList, getVideoList, getVideo, }
+  };
+
+  return { videos, youtubeSearch, clickVideo, clickedVideo, videoList, getVideoList, oneVideo, getVideo, levelVideos, getLevelVideos,  }
 })

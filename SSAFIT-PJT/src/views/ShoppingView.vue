@@ -1,9 +1,7 @@
 <template>
-  <div>
+  <div class="container my-con">
     <h2>ShoppingView</h2>
-    <hr />
     <ShoppingSearch />
-    <hr />
     <ShoppingList />
   </div>
 </template>
@@ -13,5 +11,9 @@ import ShoppingSearch from "@/components/shopping/ShoppingSearch.vue";
 import ShoppingList from "@/components/shopping/ShoppingList.vue";
 </script>
 
-<style scoped></style>
+<style scoped>
+.my-con {
+	margin-bottom: 100px;
+}
+</style>
 

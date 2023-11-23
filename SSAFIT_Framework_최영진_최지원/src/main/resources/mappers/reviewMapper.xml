@@ -44,5 +44,11 @@
         WHERE reviewId=#{reviewId}
     </update>
     
+    <!-- 회원id로 리뷰 가져오기 -->
+    <select id="selectMyReview" parameterType="String" resultType="Review">
+		SELECT reviewId, userId, videoId, title, content, date_format(regDate, '%Y-%m-%d') as regDate, viewCnt
+		FROM review
+		WHERE userId = #{userId}
+    </select>
 
 </mapper>

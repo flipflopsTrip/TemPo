@@ -30,5 +30,12 @@
         DELETE FROM comment
         WHERE commentId=#{commentId}
     </delete>
+    
+    <!-- 회원의 댓글 목록 -->
+    <select id="selectMyComment" parameterType="String" resultType="Comment">
+	    SELECT commentId, userId, reviewId, content, date_format(regDate, '%Y-%m-%d') as regDate
+        FROM comment
+        WHERE userId = #{userId}
+    </select>
 
 </mapper>

@@ -67,6 +67,17 @@ export const useCReviewStore = defineStore("cReview", () => {
     cReviewList.value = response.data;
   };
 
+  //특정 회원의 자유게시판 댓글 목록
+  const myCommunityReviewList = ref([]);
+  const getMyCommunityReview = function(userId) {
+    axios
+      .get(`http://localhost:8080/api-cReview/myCReview/${userId}`)
+      .then((res)=>{
+        myCommunityReviewList.value = res.data;
+      })
+      .catch((err)=>{console.log(err)})
+  }
+
   return {
     cReviewList,
     getCReviewList,
@@ -78,5 +89,7 @@ export const useCReviewStore = defineStore("cReview", () => {
     showEditForm,
     hideEditForm,
     updateList,
+    myCommunityReviewList,
+    getMyCommunityReview,
   };
 });

@@ -1,7 +1,7 @@
 <template>
-	<div class="container">
+	<div class="container my-con">
 		<header>
-      <h2>Fitness Videos</h2>
+      <div>Fitness Videos</div>
     </header>
 
 		<div class="btn-container">
@@ -76,7 +76,12 @@ const showDetail = function(video) {
 	header {
 		background-color: #fff;
 		padding: 15px;
+		margin: 10px 0px;
 		text-align: center;
+	}
+	header > div {
+		font-size: 2rem;
+		font-weight: 500;
 	}
 	.btn-container {
 		display: flex;
@@ -118,4 +123,7 @@ const showDetail = function(video) {
 	.video-details {
 		color: #555;
 	}
+.my-con {
+	margin-bottom: 100px;
+}
 </style>

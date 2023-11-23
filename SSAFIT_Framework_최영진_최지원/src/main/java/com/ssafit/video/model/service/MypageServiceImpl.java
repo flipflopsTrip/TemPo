@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafit.video.model.dao.MypageDao;
 import com.ssafit.video.model.dao.ReviewDao;
+import com.ssafit.video.model.dto.Community;
 import com.ssafit.video.model.dto.Review;
 import com.ssafit.video.model.dto.Weight;
 
@@ -33,6 +34,14 @@ public class MypageServiceImpl implements MypageService {
 			if (mypageDao.updateWeight(weight) > 0) return true;
 			else return false;
 		}
+	}
+	
+	@Override
+	public List<Community> getCommunity(String userId) {
+		List<Community> tmp = mypageDao.selectCommunity(userId);
+		if (tmp != null && tmp.size() != 0)
+			return tmp;
+		return null;
 	}
 	
 }

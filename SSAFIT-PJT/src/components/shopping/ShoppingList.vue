@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container my-con">
     <h3>ShoppingList</h3>
     <ShoppingListItem
       v-for="product in store.products"
@@ -22,4 +22,8 @@ const store = useShoppingStore();
 // });
 </script>
 
-<style scoped></style>
+<style scoped>
+.my-con {
+	margin-bottom: 100px;
+}
+</style>

@@ -12,6 +12,7 @@ public class Video {
 	private String youtuber;
 	private String regDate;
 	private int level;
+	private int reviewCount;
 	
 	public Video() {
 	}
@@ -86,6 +87,14 @@ public class Video {
 
 	public void setLevel(int level) {
 		this.level = level;
+	}
+	
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
 	}
 
 	@Override

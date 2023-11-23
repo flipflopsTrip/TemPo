@@ -1,13 +1,14 @@
 <template>
   <!--마이페이지에서 내가 찜한 영상 목록-->
   <div class="container">
-    <div class="title">찜한 영상 목록</div>
-    <table class="table">
-      <thead>
+    <div class="title">좋아요 영상 목록</div>
+    <div v-if="storeW.wishList.length == 0">아직 찜한 영상이 없습니다.</div>
+    <table v-else class="table">
+      <thead class="my-thead">
         <tr class="text-center">
           <th>번호</th>
+          <th>부위</th>
           <th>제목</th>
-          <th>운동 부위</th>
           <th>찜한 날짜</th>
         </tr>
       </thead>
@@ -17,20 +18,18 @@
           :key="wishVideo.wishId"
           class="text-center my-hover"
         >
-          <td>{{index + 1 }}</td>
-          <td>
+        <td>{{index + 1 }}</td>
+        <td>{{ wishVideo.fitpart }}</td>
+          <td class="video-link">
             <RouterLink
               :to="{
                 name: 'videoDetail',
                 params: { videoId: wishVideo.videoId },
               }"
-              style="color: black; text-decoration: none"
             >
               {{ wishVideo.title }}</RouterLink
             >
           </td>
-          <td>{{ wishVideo.fitpart }}</td>
-          <!--부위를 가져와-->
           <td>{{ wishVideo.regDate }}</td>
         </tr>
       </tbody>
@@ -76,6 +75,24 @@ onMounted(() => {
 	background: linear-gradient(to top, #ffdc30df 15%, transparent 15%);
 }
 tr.my-hover:hover td {
-	background-color: rgba(192, 214, 232, 0.086);
+	background-color: #9db2bf28;
+}
+.video-link > a {
+	color: black;
+	text-decoration: none;
+}
+.video-link > a:hover {
+	text-decoration: underline;
+}
+.my-thead {
+  border-bottom: 1px solid #ccc;
+	border-top: 2px solid #9DB2BF;
+	padding: 2px 10px;
+}
+thead th {
+  background-color: #e5ecf2;
+}
+tbody > tr:last-child {
+  border-bottom: 2px solid #9DB2BF;
 }
 </style>

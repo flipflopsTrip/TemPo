@@ -52,4 +52,14 @@ public class VideoServiceImpl implements VideoService {
 		return null;
 	}
 	
+	@Override
+	public List<Video> getLevelVideo(int level) {
+		return videoDao.selectLevelVideo(level);
+	}
+	
+	@Override
+	public List<Video> getLevelAllVideo() {
+		return videoDao.selectLevelAll();
+	}
+	
 }

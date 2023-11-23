@@ -59,6 +59,17 @@ export const useCommentStore = defineStore("comment", () => {
     isEditing.value = false;
   };
 
+  //특정 회원의 댓글 목록
+  const myCommentList = ref([]);
+  const getMyComment = function(userId) {
+    axios
+      .get(`http://localhost:8080/api-comment/myComment/${userId}`)
+      .then((res)=>{
+        myCommentList.value = res.data;
+      })
+      .catch((err)=>{console.log(err)})
+  };
+
   return {
     commentList,
     getCommentList,
@@ -69,5 +80,7 @@ export const useCommentStore = defineStore("comment", () => {
     isEditing,
     showEditForm,
     hideEditForm,
+    myCommentList,
+    getMyComment,
   };
 });

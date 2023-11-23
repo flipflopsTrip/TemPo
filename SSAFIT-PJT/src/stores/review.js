@@ -4,7 +4,7 @@ import axios from "axios";
 import router from "@/router";
 
 export const useReviewStore = defineStore("review", () => {
-  const REST_REVIEW_API = "http://localhost:8080/api-review/review"; //?
+  const REST_REVIEW_API = "http://localhost:8080/api-review/review"; 
 
   //list
   const reviewList = ref([]);
@@ -54,6 +54,17 @@ export const useReviewStore = defineStore("review", () => {
       });
   };
 
+  //특정 회원의 리뷰 목록
+  const myReviewList = ref([]);
+  const getMyReview = function(userId) {
+    axios
+      .get(`http://localhost:8080/api-review/myReview/${userId}`)
+      .then((res)=>{
+        myReviewList.value = res.data;
+      })
+      .catch((err)=>{console.log(err)})
+  };
+
   return {
     reviewList,
     getReviewList,
@@ -61,5 +72,7 @@ export const useReviewStore = defineStore("review", () => {
     getReview, //리뷰 상세
     createReview,
     updateReview,
+    myReviewList,
+    getMyReview,
   };
 });

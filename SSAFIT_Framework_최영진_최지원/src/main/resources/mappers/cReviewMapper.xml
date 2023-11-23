@@ -30,5 +30,12 @@
         DELETE FROM cReview
         WHERE cReviewId=#{cReviewId}
     </delete>
+    
+    <!-- 회원의 자유게시판 댓글 목록 -->
+    <select id="selectMyCReview" parameterType="String" resultType="CReview">
+ 	    SELECT cReviewId, userId, communityId,content, date_format(regDate, '%Y-%m-%d') as regDate
+        FROM cReview
+        WHERE userId=#{userId}
+    </select>
 
 </mapper>

@@ -6,8 +6,9 @@
 				<RouterLink :to="{ name : 'MyPageMain' }">내 정보 관리</RouterLink>
 				<a href="#">운동일지</a>
 				<RouterLink :to="{ name : 'wishList' }">좋아요 영상 목록</RouterLink>
-				<a href="#">내가 쓴 글</a>
-				<a href="#">내가 쓴 댓글</a>
+				<RouterLink :to="{ name : 'MyPageBoard' }">내가 쓴 글</RouterLink>
+				<div>
+				<RouterLink :to="{ name : 'MyPageReview' }">내가 쓴 댓글</RouterLink></div>
 			</nav>
 		</div>
 
@@ -85,6 +86,9 @@ const route = useRoute();
 	background-color: #ffdc30dc;
 	color: #27374D;
 	font-weight: 600;
+}
+nav > div > .router-link-active {
+	background-color: #ffdc30dc;
 }
 
 </style>

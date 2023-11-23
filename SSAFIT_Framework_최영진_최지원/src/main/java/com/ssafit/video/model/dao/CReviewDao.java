@@ -13,4 +13,6 @@ public interface CReviewDao {
 	public int updateCReview(CReview cReview);
 	//댓글 삭제
 	public int deleteCReview(int cReviewId);
+	//회원의 자유게시판 댓글 리스트
+	public List<CReview> selectMyCReview(String userId);
 }

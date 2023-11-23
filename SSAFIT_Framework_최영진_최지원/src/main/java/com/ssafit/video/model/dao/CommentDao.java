@@ -12,4 +12,6 @@ public interface CommentDao {
 	public int updateComment(Comment comment);
 	//댓글 삭제
 	public int deleteComment(int commentId);
+	//회원의 댓글 목록
+	public List<Comment> selectMyComment(String userId);
 }

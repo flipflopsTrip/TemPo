@@ -49,9 +49,7 @@ public class ReviewRestController {
     @PostMapping("/review/{id}")
     @ApiOperation(value="리뷰 등록", notes="리뷰 등록")
     public ResponseEntity<?> writeReview(@RequestBody Review review, @PathVariable int id){
-        System.out.println(review);
         int result = reviewService.createReview(review);
-        System.out.println(result);
         if (result == 0) return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<Review>(reviewService.getReview(review.getReviewId()), HttpStatus.OK);
     }
@@ -60,7 +58,6 @@ public class ReviewRestController {
     @ApiOperation(value="리뷰 수정", notes="리뷰 수정")
     public ResponseEntity<?> modifyReview(@RequestBody Review review){
         int result = reviewService.updateReview(review);
-        System.out.println(review);
         if (result == 0) return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<Review>(reviewService.getReview(review.getReviewId()), HttpStatus.OK);
     }
@@ -70,8 +67,16 @@ public class ReviewRestController {
     public ResponseEntity<?> deleteReview(@PathVariable int id){
         int result = reviewService.removeReview(id);
         if (result == 0) return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
-        //이상한 값(id) 못하게 막던지
-        //다른사람도 요청 주소를 통해 내글을 지워버릴수 있다. (권한쳌 -> 인터셉터)
         return new ResponseEntity<Integer>(result, HttpStatus.OK);
+    }
+    
+    @GetMapping("/myReview/{userId}")
+    @ApiOperation(value="특정 회원의 리뷰 목록", notes="특정 회원의 리뷰 목록 가져오기")
+    public ResponseEntity<List<Review>> getMyReview(@PathVariable String userId) {
+    	List<Review> reviews = reviewService.getMyReview(userId);
+    	if (reviews != null && reviews.size() != 0)
+    		return new ResponseEntity<List<Review>>(reviews, HttpStatus.OK);
+    	else
+    		return new ResponseEntity<List<Review>>(reviews, HttpStatus.NO_CONTENT);
     }
 }

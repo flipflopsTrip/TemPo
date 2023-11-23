@@ -64,4 +64,14 @@ public class CommentRestController {
         if (result == 0) return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<Integer>(result, HttpStatus.OK);
     }
+    
+    @GetMapping("/myComment/{userId}")
+    @ApiOperation(value="특정 회원의 댓글 목록", notes="특정 회원의 댓글 목록 가져오기")
+    public ResponseEntity<List<Comment>> getMyComment(@PathVariable String userId) {
+    	List<Comment> comments = commentService.getMyComment(userId);
+    	if (comments != null && comments.size() != 0)
+    		return new ResponseEntity<List<Comment>>(comments, HttpStatus.OK);
+    	else
+    		return new ResponseEntity<List<Comment>>(comments, HttpStatus.NO_CONTENT);
+    }
 }

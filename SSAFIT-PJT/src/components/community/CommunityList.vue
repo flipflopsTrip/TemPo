@@ -1,41 +1,42 @@
 <template>
-  <div>
-    <h4>게시글 목록</h4>
-    <hr />
+  <div class="container my-con my-board">
+    <div class="title">커뮤니티 게시판</div>
 
-    <button type="button" class="btn btn-primary">
+    <table class="table mb-3">
+      <thead class="my-thead">
+        <tr class="text-center">
+          <th>글 번호</th>
+          <th>구분</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>조회수</th>
+          <th>등록일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="community in store.communityList" :key="community.communityId" class="my-hover text-center">
+          <td>{{ community.communityId }}</td>
+          <td>{{ community.category }}</td>
+          <td class="all-links">
+            <RouterLink
+              :to="`/community/${community.communityId}`"
+              >{{ community.title }}</RouterLink>
+          </td>
+          <td>{{ community.userId }}</td>
+          <td>{{ community.viewCnt }}</td>
+          <td>{{ community.regDate }}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="d-flex justify-content-end">
       <RouterLink
         :to="{ name: 'communityCreate' }"
-        style="color: white; text-decoration: none"
-        >게시글 작성</RouterLink
-      >
-    </button>
-    <table class="table table-hover">
-      <tr>
-        <th class="text-center">글 번호</th>
-        <th class="text-center">구분</th>
-        <th>제목</th>
-        <th class="text-center">작성자</th>
-        <th class="text-center">조회수</th>
-        <th class="text-center">등록일</th>
-      </tr>
-      <tr v-for="community in store.communityList" :key="community.communityId">
-        <td class="text-center">{{ community.communityId }}</td>
-        <td class="text-center">{{ community.category }}</td>
-        <td>
-          <RouterLink
-            :to="`/community/${community.communityId}`"
-            style="color: red"
-            >{{ community.title }}</RouterLink
-          ><!--@GetMapping("/community/{communityId}")-->
-        </td>
-        <td class="text-center">{{ community.userId }}</td>
-        <td class="text-center">{{ community.viewCnt }}</td>
-        <td class="text-center">{{ community.regDate }}</td>
-      </tr>
-    </table>
-    <br />
-    <br />
+        class="my-btn"
+        >글쓰기 <i class="bi bi-pencil-square"></i>
+      </RouterLink>
+    </div>
+
     <CommunitySearchInput />
   </div>
 </template>
@@ -54,4 +55,66 @@ onMounted(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.my-con {
+	margin-bottom: 100px;
+}
+.my-board {
+  width: 50%;
+}
+.title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding: 15px 0px;
+  margin: 10px 0px;
+}
+tr.my-hover:hover td {
+	background-color: #9db2bf28;
+}
+.all-links > a {
+	color: black;
+	text-decoration: none;
+}
+.all-links > a:hover {
+	text-decoration: underline;
+}
+table > thead > tr > th:nth-child(1) {
+	width: 10%;
+}
+table > thead > tr > th:nth-child(2) {
+	width: 10%;
+}
+table > thead > tr > th:nth-child(4) {
+	width: 10%;
+}
+table > thead > tr > th:nth-child(5) {
+	width: 10%;
+}
+table > thead > tr > th:nth-child(6) {
+	width: 15%;
+}
+.my-btn {
+  color: #4b565c;
+	border: 1px solid #9DB2BF;
+	border-radius: 6px;
+	padding: 6px 8px;
+	margin-right: 10px;
+  text-decoration: none;
+  background-color: #f0f0f0;
+}
+.my-btn:hover {
+	color: black;
+	background-color: #9db2bf3d;
+}
+.my-thead {
+  border-bottom: 1px solid #ccc;
+	border-top: 2px solid #9DB2BF;
+	padding: 2px 10px;
+}
+thead th {
+  background-color: #e5ecf2;
+}
+tbody > tr:last-child {
+  border-bottom: 2px solid #9DB2BF;
+}
+</style>

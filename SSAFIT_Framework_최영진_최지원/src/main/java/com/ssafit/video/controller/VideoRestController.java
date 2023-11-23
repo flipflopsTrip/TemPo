@@ -71,12 +71,29 @@ public class VideoRestController {
 	@PostMapping("/video")
 	@ApiOperation(value="비디오 저장", notes="비디오 클릭 시 데이터 저장")
 	public ResponseEntity<Video> clickInsert(@RequestBody Video video) {
-		System.out.println("저장. 컨트 들어온 video: "+video);
 		Video savedVideo = videoService.saveVideo(video);
-		System.out.println("저장후 url로 가져온 비디오: "+savedVideo);
 		return new ResponseEntity<Video>(savedVideo, HttpStatus.OK);
 	}
 	
+	@GetMapping("/videoLevel/{level}")
+	@ApiOperation(value="난이도 별 비디오 목록", notes="난이도 별 비디오의 목록 조회")
+	public ResponseEntity<List<Video>> videoLevelList(@PathVariable int level) {
+		//level이 100이면 전체 비디오 목록을 그 외는 getLevelVideo로
+		if (level == 100) {
+			List<Video> lvVideos = videoService.getLevelAllVideo();
+			if (lvVideos != null && lvVideos.size() != 0) 
+				return new ResponseEntity<List<Video>>(lvVideos, HttpStatus.OK);
+			else
+				return new ResponseEntity<List<Video>>(lvVideos, HttpStatus.NO_CONTENT);
+		} else {
+			List<Video> lvVideos = videoService.getLevelVideo(level);
+			if (lvVideos != null && lvVideos.size() != 0) 
+				return new ResponseEntity<List<Video>>(lvVideos, HttpStatus.OK);
+			else
+				return new ResponseEntity<List<Video>>(lvVideos, HttpStatus.NO_CONTENT);
+		}
+		
+	}
 	
 	
 }

@@ -1,41 +1,39 @@
 <template>
-  <div>
-    <h3>댓글 목록</h3>
-    <hr />
+  <div class="my-sub-con">
+    <div class="sub-title">댓글 목록</div>
     <div
       class="input-group input-group-sm"
       role="group"
       style="text-align: left"
     >
-      <table
-        class="table table-striped table-bordered"
-        border="1"
-        width="800px"
-        align="left"
-      >
-        <tr>
-          <th class="text-center">번호</th>
-          <th class="text-center">작성자</th>
-          <th>내용</th>
-          <th class="text-center">작성일</th>
-        </tr>
-        <tr v-for="(cReview, index) in storeCR.cReviewList" :key="cReview.cReviewId">
-          <td class="text-center">{{ index + 1 }}</td>
-          <td class="text-center">{{ cReview.userId }}</td>
-          <td>{{ cReview.content }}</td>
-          <td class="text-center">{{ cReview.regDate }}</td>
-
-          <td>
-            <div v-if="storeU.loginUserId === cReview.userId">
-              <button @click="showUpdateForm(cReview)">수정</button>
-              <button @click="showDeleteAlert(cReview)">삭제</button>
-              <cReview-update
-                v-if="editableCReviewId === cReview.cReviewId"
-                :cReview="cReview"
-              />&nbsp
-            </div>
-          </td>
-        </tr>
+      <table class="table">
+        <thead>
+          <tr class="text-center">
+            <th>번호</th>
+            <th>작성자</th>
+            <th>내용</th>
+            <th>작성일</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(cReview, index) in storeCR.cReviewList" :key="cReview.cReviewId" class="text-center">
+            <td>{{ index + 1 }}</td>
+            <td>{{ cReview.userId }}</td>
+            <td>{{ cReview.content }}</td>
+            <td>{{ cReview.regDate }}</td>
+            <td>
+              <div v-if="storeU.loginUserId === cReview.userId">
+                <button @click="showUpdateForm(cReview)" class="my-btn">&nbsp;<i class="bi bi-pencil-fill"></i>&nbsp;</button>
+                <button @click="showDeleteAlert(cReview)" class="my-btn">&nbsp;<i class="bi bi-trash3-fill"></i>&nbsp;</button>
+                <cReview-update
+                  v-if="editableCReviewId === cReview.cReviewId"
+                  :cReview="cReview"
+                />
+              </div>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
@@ -88,4 +86,35 @@ const showDeleteAlert = async (cReview) => {
   }
 };
 </script>
-<style scoped></style>
+<style scoped>
+.sub-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.my-btn {
+  color: #4b565c;
+	border: 1px solid #9DB2BF;
+	border-radius: 6px;
+	padding: 6px 8px;
+	margin-right: 10px;
+}
+.my-btn:hover {
+	color: black;
+	background-color: #9db2bf3d;
+}
+table > thead > tr > th:nth-child(1) {
+  width: 10%;
+}
+table > thead > tr > th:nth-child(2) {
+  width: 10%;
+}
+table > thead > tr > th:nth-child(4) {
+  width: 16%;
+}
+table > thead > tr > th:nth-child(5) {
+  width: 20%;
+}
+.my-sub-con {
+  margin: 20px 0px 200px;
+}
+</style>

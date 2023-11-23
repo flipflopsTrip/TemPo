@@ -9,4 +9,5 @@ public interface CommentService {
 	int createComment(Comment comment);
 	int updateComment(Comment comment);
 	int removeComment(int commentId);
+	List<Comment> getMyComment(String userId);
 }

@@ -32,5 +32,10 @@ public class CReviewServiceImpl implements CReviewService {
 	public int removeCReview(int cReviewId) {
 		return cReviewDao.deleteCReview(cReviewId);
 	}
+	
+	@Override
+	public List<CReview> getMyCReviewt(String userId) {
+		return cReviewDao.selectMyCReview(userId);
+	}
 
 }

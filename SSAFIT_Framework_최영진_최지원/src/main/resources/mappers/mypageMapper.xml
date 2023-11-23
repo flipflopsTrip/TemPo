@@ -27,4 +27,10 @@
 		where userId = #{userId} and regDate = #{regDate};
 	</update>
 	
+	<select id="selectCommunity" parameterType="String" resultType="Community">
+		select communityId, userId, category, title, content, date_format(regDate, '%Y-%m-%d') as regDate, viewCnt
+		from community 
+		where userId = #{userId};
+	</select>
+	
 </mapper>

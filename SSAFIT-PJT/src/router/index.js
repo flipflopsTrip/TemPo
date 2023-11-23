@@ -5,6 +5,7 @@ import HomeView from "@/views/HomeView.vue";
 import VideoView from "@/views/VideoView.vue";
 import VideoList from "@/components/video/VideoList.vue";
 import VideoDetail from "@/components/video/VideoDetail.vue";
+import VideoLevelList from "@/components/video/VideoLevelList.vue";
 
 import ReviewView from "@/views/ReviewView.vue";
 import ReviewList from "@/components/review/ReviewList.vue";
@@ -29,6 +30,12 @@ import wishList from "@/components/wish/wishList.vue";
 
 import MyPageView from "@/views/MyPageView.vue";
 import MyPageMain from "@/components/mypage/MyPageMain.vue";
+import MyPageBoard from "@/components/mypage/MyPageBoard.vue";
+import MyPageReview from "@/components/mypage/MyPageReview.vue";
+
+import MyPageReviewItemReview from "@/components/mypage/MyPageReviewItemReview.vue";
+import MyPageReviewItemComment from "@/components/mypage/MyPageReviewItemComment.vue";
+import MyPageReviewItemCReview from "@/components/mypage/MyPageReviewItemCReview.vue";
 
 import KcalCalculator from "@/components/kcalCalculator/KcalCalculator.vue";
 
@@ -41,6 +48,13 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
+    },
+
+    //level
+    {
+      path: "/videoLevel",
+      name: "VideoLevelList",
+      component: VideoLevelList,
     },
 
     //video
@@ -159,6 +173,33 @@ const router = createRouter({
           path: "wishList",
           name: "wishList",
           component: wishList,
+        },
+        {
+          path: "myBoard",
+          name: "MyPageBoard",
+          component: MyPageBoard,
+        },
+        {
+          path: "myReview",
+          name: "MyPageReview",
+          component: MyPageReview,
+          children: [
+            {
+              path: "myVideoReview",
+              name: "MyPageReviewItemReview",
+              component: MyPageReviewItemReview,
+            },
+            {
+              path: "myVideoComment",
+              name: "MyPageReviewItemComment",
+              component: MyPageReviewItemComment,
+            },
+            {
+              path: "myCommunityReview",
+              name: "MyPageReviewItemCReview",
+              component: MyPageReviewItemCReview,
+            },
+          ],
         },
       ],
     },

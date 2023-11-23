@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container my-con">
     <h2>Video&View</h2>
     <div>
       <div>
@@ -91,11 +91,12 @@ const goBack = () => {
 //아직 clickVideo를 처리하지 못한 상태일 수 있기 때문에 처리 후 videoId 받아 사용할 수 있게 if문으로 수정
 const videoIdd = route.params.videoId;
 onMounted(() => {
-  if (videoIdd) {
+  // if (videoIdd) {
     // store.getVideo(videoIdd);
     // storeR.getReviewList(videoIdd);
-  }
-  storeR.getReviewList(store.clickedVideo.videoId);
+  // }
+  store.getVideo(videoIdd);
+  storeR.getReviewList(videoIdd);
 })
 
 </script>
@@ -103,5 +104,8 @@ onMounted(() => {
 <style scoped>
 a {
   text-decoration: none;
+}
+.my-con {
+	margin-bottom: 100px;
 }
 </style>

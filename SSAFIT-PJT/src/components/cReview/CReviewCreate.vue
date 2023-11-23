@@ -1,23 +1,15 @@
 <template>
-  <div>
-    <h5>댓글 작성</h5>
-    <fieldset>
-      <div>
-        <textarea
-          id="content"
-          style="width: 80%; height: 100px"
-          v-model="cReview.content"
-        ></textarea>
-      </div>
-      <div>
-        <button type="button" class="btn btn-primary" @click="createCReview">
-          등록
-        </button>
-        <button type="button" class="btn btn-danger" @click="goBack">
-          취소
-        </button>
-      </div>
-    </fieldset>
+  <div class="my-sub-con">
+    <div class="sub-title">댓글 작성</div>
+    <div class="my-flex d-flex align-items-center">
+      <textarea
+        id="content"
+        v-model="cReview.content"
+        class="form-control my-area"></textarea>
+    <button type="button" class="my-btn" @click="createCReview">
+      등록 <i class="bi bi-pencil-square"></i>
+    </button>
+    </div>
   </div>
 </template>
 
@@ -56,4 +48,31 @@ const createCReview = async () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.sub-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.my-btn {
+  color: #4b565c;
+	border: 1px solid #9DB2BF;
+	border-radius: 6px;
+	padding: 6px 8px;
+	margin-right: 10px;
+}
+.my-btn:hover {
+	color: black;
+	background-color: #9db2bf3d;
+}
+.my-flex > textarea {
+  margin-right: 10px;
+  border: 1px solid #d2d2d2;
+}
+.my-flex > button {
+  height: 40px;
+  flex-basis: 15%;
+}
+.my-sub-con {
+  margin: 20px 0px 30px;
+}
+</style>

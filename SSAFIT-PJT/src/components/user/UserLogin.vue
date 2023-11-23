@@ -9,7 +9,7 @@
       <div class="mb-3">
           <div class="input-group">
             <span class="input-group-text"><i class="bi bi-person"></i></span>
-            <input type="text" class="form-control no-outline" id="id" placeholder="아이디" required v-model="id" @keyup.enter="login">
+            <input type="text" class="form-control no-outline" id="id" placeholder="아이디" required autofocus v-model="id" @keyup.enter="login">
           </div>
         </div>
         <div class="mb-3">

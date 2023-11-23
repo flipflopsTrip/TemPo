@@ -65,4 +65,14 @@ public class CReviewRestController {
         if (result == 0) return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<Integer>(result, HttpStatus.OK);
     }
+    
+    @GetMapping("/myCReview/{userId}")
+    @ApiOperation(value="특정 회원의 댓글 목록", notes="특정 회원의 댓글 목록 가져오기")
+    public ResponseEntity<List<CReview>> getMyCReview(@PathVariable String userId) {
+    	List<CReview> cReviews = cReviewService.getMyCReviewt(userId);
+    	if (cReviews != null && cReviews.size() != 0)
+    		return new ResponseEntity<List<CReview>>(cReviews, HttpStatus.OK);
+    	else
+    		return new ResponseEntity<List<CReview>>(cReviews, HttpStatus.NO_CONTENT);
+    }
 }

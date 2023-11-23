@@ -31,5 +31,9 @@ public class CommentServiceImpl implements CommentService {
 	public int removeComment(int commentId) {
 		return commentDao.deleteComment(commentId);
 	}
-
+	
+	@Override
+	public List<Comment> getMyComment(String userId) {
+		return commentDao.selectMyComment(userId);
+	}
 }

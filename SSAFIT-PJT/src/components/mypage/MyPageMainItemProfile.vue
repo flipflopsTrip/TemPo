@@ -1,6 +1,6 @@
 <template>
 	<div class="item profile">
-		<div class="title">기본 정보</div>
+		<div class="title">기본 정보 <i class="bi bi-person-lines-fill"></i></div>
 		<div class="profile-detail d-flex d-flex flex-column justify-content-center align-items-center">
 			<div class="profile-detail-item">
 				<img src="@/assets/profile.png" alt="프로필이미지">
@@ -9,7 +9,7 @@
 			<div class="profile-detail-item"><span>이메일: </span>{{ store.sessionUser.email }}</div>
 		</div>
 		
-		<div class="title title-2">비밀번호</div>
+		<div class="title title-2">비밀번호 <i class="bi bi-key-fill"></i></div>
 		<div class="con-pw d-flex flex-row-reverse">
 			<button class="btn btn-primary btn-pw" data-bs-toggle="modal" data-bs-target="#changePwModal">비밀번호 변경</button>
 		</div>

@@ -41,7 +41,8 @@ export const useUserStore = defineStore('user', () => {
         sessionStorage.setItem('access-token', res.data["access-token"]);
         loginUserId.value = loginUser.id;
         alert('로그인 성공');
-        router.go(-1); //뒤로가기(보고있던 페이지로 이동)
+        // router.go(-1); //뒤로가기(보고있던 페이지로 이동)
+        router.push({name: 'home'})
       }
       else {
         alert('로그인 실패')

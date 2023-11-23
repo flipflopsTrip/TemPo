@@ -18,6 +18,10 @@ public interface VideoDao {
 
 	public boolean insertVideo(Video video);
 
+	public List<Video> selectLevelVideo(int level);
+
+	public List<Video> selectLevelAll();
+
 //	public void insertVideo(Video video);
 //	public void deleteVideo(int id);
 //	public void updateVideo(Video video);

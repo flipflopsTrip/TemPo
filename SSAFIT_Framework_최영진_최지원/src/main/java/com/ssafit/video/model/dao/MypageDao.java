@@ -2,6 +2,7 @@ package com.ssafit.video.model.dao;
 
 import java.util.List;
 
+import com.ssafit.video.model.dto.Community;
 import com.ssafit.video.model.dto.Weight;
 
 public interface MypageDao {
@@ -13,5 +14,7 @@ public interface MypageDao {
 	Weight isCheckNewWeight(Weight weight);
 
 	int updateWeight(Weight weight);
+
+	List<Community> selectCommunity(String userId);
 
 }

@@ -1,54 +1,46 @@
 <template>
-  <div>
-    <div
-      class="card"
-      style="width: 70%; display: block; justify-content: center"
-    >
-      <div class="card-header" style="text-align: left">
+  <div class="container my-con my-board">
+    <button class="">목록</button>
+    <div class="card my-card">
+      <div class="card-header d-flex justify-content-between">
         <div>[ {{ storeC.community.category }} ]</div>
-      </div>
-      <div class="card-body">
-        <div
-          class="container"
-          style="display: flex; justify-content: space-between"
-        >
-          <h3 class="card-title">{{ storeC.community.title }}</h3>
-          <div class="container" style="display: block; text-align: right">
-            <div>{{ storeC.community.userId }}</div>
-            <br />
-            <div>{{ storeC.community.regDate }}</div>
-          </div>
+        <div class="sub-header">
+          <span>{{ storeC.community.userId }}</span>
+          <span>({{ storeC.community.regDate }})</span>
+          <span><i class="bi bi-eye-fill"></i> {{ storeC.community.viewCnt }}</span>
         </div>
-        <hr />
-        <div class="card-text">{{ storeC.community.content }}</div>
-        <div>{{ storeC.community.viewCnt }}</div>
-
+      </div>
+      <div class="card-body my-card-body">
+        <div class="card-title">
+          {{ storeC.community.title }}
+        </div>
+        <div class="card-text">
+          {{ storeC.community.content }}
+        </div>
         <div
           v-if="storeU.loginUserId === storeC.community.userId"
           style="display: flex; justify-content: right"
         >
           <button
-            type="button"
-            class="btn btn-primary"
-            @click="updateCommunity"
-          >
-            수정</button
-          >&nbsp&nbsp&nbsp&nbsp
-          <button type="button" class="btn btn-danger" @click="deleteCommunity">
-            삭제
+            class="my-btn my-btn-modi"
+            @click="updateCommunity">
+            수정 <i class="bi bi-pencil-fill"></i>
+          </button>
+          <button class="my-btn my-btn-del" 
+            @click="deleteCommunity">
+            삭제 <i class="bi bi-trash3-fill"></i>
           </button>
         </div>
       </div>
     </div>
-    <hr />
+
     <div>
       <CReviewCreate :communityId="communityId" />
-      <hr />
       <CReviewList
         :communityId="communityId"
-        @update-cReview-list="updateCReviewList"
-      />
+        @update-cReview-list="updateCReviewList" />
     </div>
+
   </div>
 </template>
 
@@ -101,5 +93,33 @@ const updateCReviewList = () => {
 #container {
   display: flex;
   justify-content: space-around;
+}
+.my-con {
+  margin-top: 50px;
+	margin-bottom: 100px;
+}
+.my-board {
+  width: 40%;
+}
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.card-text {
+  font-size: 1.1rem;
+}
+.sub-header > span {
+  margin: 0px 4px;
+}
+.my-btn {
+  color: #4b565c;
+	border: 1px solid #9DB2BF;
+	border-radius: 6px;
+	padding: 6px 8px;
+	margin-right: 10px;
+}
+.my-btn:hover {
+	color: black;
+	background-color: #9db2bf3d;
 }
 </style>
