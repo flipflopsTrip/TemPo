@@ -39,7 +39,6 @@ import MyPageReviewItemCReview from "@/components/mypage/MyPageReviewItemCReview
 
 import KcalCalculator from "@/components/kcalCalculator/KcalCalculator.vue";
 
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -210,6 +209,7 @@ const router = createRouter({
       name: "KcalCalculator",
       component: KcalCalculator,
     },
+
 
   ], //close
 }); //close

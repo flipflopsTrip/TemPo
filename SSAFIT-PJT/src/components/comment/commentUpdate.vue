@@ -1,22 +1,17 @@
 <template>
   <div>
     <div v-if="storeC.isEditing">
-      <fieldset>
-        <legend>댓글 수정</legend>
-        <div>
-          <label for="content">내용 : </label>
-          <textarea
-            id="content"
-            cols="50"
-            rows="20"
-            v-model="editableComment.content"
-          ></textarea>
-        </div>
-        <div>
-          <button @click="updateComment">수정</button>
-          <button type="button" class="secondary" @click="goBack">취소</button>
-        </div>
-      </fieldset>
+      <div>
+        <textarea
+          id="content"
+          cols="30"
+          rows="5"
+          v-model="editableComment.content"
+          class="form-control my-area"
+        ></textarea>
+        <button @click="updateComment" class="my-btn">수정</button>
+        <button @click="goBack" class="my-btn">닫기</button>
+      </div>
     </div>
   </div>
 </template>
@@ -52,4 +47,21 @@ watch(
 );
 </script>
 
-<style scoped></style>
+<style scoped>
+.my-btn {
+  color: #4b565c;
+	border: 1px solid #9DB2BF;
+	border-radius: 6px;
+	padding: 6px 8px;
+	margin-right: 10px;
+}
+.my-btn:hover {
+	color: black;
+	background-color: #9db2bf3d;
+}
+.my-area {
+  border: 1px solid #d2d2d2;
+  width: 200px;
+  margin: 10px 0px 5px;
+}
+</style>

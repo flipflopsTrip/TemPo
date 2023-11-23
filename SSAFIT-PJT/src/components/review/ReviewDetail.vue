@@ -1,40 +1,38 @@
 <!--게시글 상세로 넘어가면 수정, 삭제, 목록 버튼-->
 <template>
-  <div>
-    <div
-      class="card"
-      style="width: 70%; display: block; justify-content: center"
-    >
-      <div class="card-header" style="text-align: left">
-        <div>{{ storeR.review.userId }}</div>
-      </div>
-      <div class="card-body">
-        <div
-          class="container"
-          style="display: flex; justify-content: space-between"
-        >
-          <h3 class="card-title">{{ storeR.review.title }}</h3>
-          <div class="container" style="display: block; text-align: right">
-            <div>{{ storeR.review.regDate }}</div>
-            <div>{{ storeR.review.viewCnt }}</div>
-            <div>{{ storeR.review.content }}</div>
-          </div>
+  <div class="container my-con my-board">
+    <div class="card my-card">
+      <div class="card-header">
+        <div class="sub-header d-flex justify-content-end">
+          <span>{{ storeR.review.userId }}</span>
+          <span>({{ storeR.review.regDate }})</span>
+          <span><i class="bi bi-eye-fill"></i> {{ storeR.review.viewCnt }}</span>
         </div>
-        <div style="display: flex; justify-content: space-between">
-          <button type="button" class="btn btn-secondary" @click="goBack">
-            뒤로가기
+      </div>
+      <div class="card-body my-card-body">
+        <div class="card-title">
+          {{ storeR.review.title }}
+        </div>
+        <div class="card-text">
+          {{ storeR.review.content }}
+        </div>
+        <div
+          v-if="storeU.loginUserId === storeR.review.userId"
+          style="display: flex; justify-content: right"
+        >
+          <button
+            class="my-btn my-btn-modi"
+            @click="updateReview">
+            수정 <i class="bi bi-pencil-fill"></i>
           </button>
-          <div v-if="storeU.loginUserId === storeR.review.userId">
-            <button type="button" class="btn btn-primary" @click="updateReview">
-              수정</button
-            >&nbsp&nbsp&nbsp&nbsp
-            <button type="button" class="btn btn-danger" @click="deleteReview">
-              삭제
-            </button>
-          </div>
+          <button class="my-btn my-btn-del" 
+            @click="deleteReview">
+            삭제 <i class="bi bi-trash3-fill"></i>
+          </button>
         </div>
       </div>
     </div>
+
     <div>
       <commentCreate :reviewId="reviewId" /><!--댓글 작성-->
       <commentList
@@ -94,4 +92,36 @@ const updateCommentList = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.my-con {
+  margin-top: 50px;
+	margin-bottom: 100px;
+}
+.my-board {
+  width: 40%;
+}
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.card-text {
+  font-size: 1.1rem;
+}
+.sub-header > span {
+  margin: 0px 4px;
+}
+.my-btn {
+  color: #4b565c;
+	border: 1px solid #9DB2BF;
+	border-radius: 6px;
+	padding: 6px 8px;
+	margin-right: 10px;
+}
+.my-btn:hover {
+	color: black;
+	background-color: #9db2bf3d;
+}
+.my-card {
+  margin-bottom: 40px;
+}
+</style>

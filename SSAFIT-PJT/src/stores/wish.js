@@ -27,9 +27,8 @@ export const useWishStore = defineStore("wish", () => {
     axios
       .get(`${REST_WISH_API}/${videoId}`, { params: { userId: userId } })
       .then((response) => {
-        console.log("찜 했어? " + response.data); //안했어
-        if (response.data === 1) isWish.value = true;
-        // else isWish.value = false;
+        if (response.data == 1) isWish.value = true;
+        else isWish.value = false;
       })
       .catch((err) => {
         console.log(err);
@@ -42,7 +41,8 @@ export const useWishStore = defineStore("wish", () => {
     axios
       .post(`${REST_WISH_API}/${videoId}?userId=${userId}`)
       .then((response) => {
-        isWish.value = response.data === 1;
+        isWish.value = response.data;
+        // isWish.value = !isWish.value; //값 반전
       })
       .catch((err) => {
         console.error(err);

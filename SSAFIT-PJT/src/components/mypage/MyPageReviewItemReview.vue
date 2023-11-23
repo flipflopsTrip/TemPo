@@ -1,7 +1,7 @@
 <template>
 	<div class="myReview-con">
 		<div class="sub-title">영상 리뷰 <i class="bi bi-chat-text"></i></div>
-		<div v-if="storeR.myReviewList.length == 0">아직 작성한 게시글이 없습니다.</div>
+		<div v-if="storeR.myReviewList.length == 0">아직 작성한 리뷰가 없습니다.</div>
 		<table v-else class="table">
 			<thead class="my-thead">
 				<tr class="text-center">

@@ -27,7 +27,7 @@
                 params: { videoId: wishVideo.videoId },
               }"
             >
-              {{ wishVideo.title }}</RouterLink
+              {{ truncateTitle(wishVideo.title) }}</RouterLink
             >
           </td>
           <td>{{ wishVideo.regDate }}</td>
@@ -61,6 +61,16 @@ onMounted(() => {
   //   console.log("찜 목록:", storeW.wishList.value);
   // }
 });
+
+const truncateTitle = (title) => {
+  const maxLength = 44;
+  const decodedTitle = document.createElement('textarea');
+  decodedTitle.innerHTML = title;
+  const truncatedTitle = decodedTitle.value.length > maxLength
+    ? `${decodedTitle.value.slice(0, maxLength)}...`
+    : decodedTitle.value;
+  return truncatedTitle;
+};
 </script>
 
 <style scoped>

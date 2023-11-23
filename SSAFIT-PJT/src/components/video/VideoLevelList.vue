@@ -21,6 +21,7 @@
 						<th>번호</th>
 						<th>난이도</th>
 						<th>내용</th>
+						<th>채널</th>
 						<th>업로드 날짜</th>
 					</tr>
 				</thead>
@@ -39,6 +40,7 @@
 								}"
 							><span>{{ truncateTitle(video.title) }}</span> <span>({{ video.reviewCount }})</span></RouterLink>
 						</td>
+						<td>{{ video.youtuber }}</td>
 						<td>{{ video.regDate }}</td>
 					</tr>
 				</tbody>
@@ -119,13 +121,16 @@ tr.my-hover:hover td {
 	font-weight: 400;
 }
 table > thead > tr > th:nth-child(1) {
-	width: 8%;
+	width: 6%;
 }
 table > thead > tr > th:nth-child(2) {
 	width: 8%;
 }
-table > thead > tr > th:last-child {
+table > thead > tr > th:nth-child(4) {
 	width: 20%;
+}
+table > thead > tr > th:last-child {
+	width: 12%;
 }
 .level-bi {
 	color: #ffc107;

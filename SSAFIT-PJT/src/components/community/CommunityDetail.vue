@@ -1,6 +1,5 @@
 <template>
   <div class="container my-con my-board">
-    <button class="">목록</button>
     <div class="card my-card">
       <div class="card-header d-flex justify-content-between">
         <div>[ {{ storeC.community.category }} ]</div>
@@ -121,5 +120,8 @@ const updateCReviewList = () => {
 .my-btn:hover {
 	color: black;
 	background-color: #9db2bf3d;
+}
+.my-card {
+  margin-bottom: 40px;
 }
 </style>

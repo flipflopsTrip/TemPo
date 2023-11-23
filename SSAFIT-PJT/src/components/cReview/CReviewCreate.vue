@@ -1,6 +1,5 @@
 <template>
   <div class="my-sub-con">
-    <div class="sub-title">댓글 작성</div>
     <div class="my-flex d-flex align-items-center">
       <textarea
         id="content"
@@ -58,7 +57,6 @@ const createCReview = async () => {
 	border: 1px solid #9DB2BF;
 	border-radius: 6px;
 	padding: 6px 8px;
-	margin-right: 10px;
 }
 .my-btn:hover {
 	color: black;
@@ -74,5 +72,8 @@ const createCReview = async () => {
 }
 .my-sub-con {
   margin: 20px 0px 30px;
+}
+.my-area {
+  height: 80px;
 }
 </style>

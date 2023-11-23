@@ -1,7 +1,7 @@
 <template>
 	<div class="myReview-con">
 		<div class="sub-title">리뷰 코멘트 <i class="bi bi-chat-text"></i></div>
-		<div v-if="storeC.myCommentList.length == 0">아직 작성한 게시글이 없습니다.</div>
+		<div v-if="storeC.myCommentList.length == 0">아직 작성한 코멘트가 없습니다.</div>
 		<table v-else class="table">
 			<thead class="my-thead">
 				<tr class="text-center">

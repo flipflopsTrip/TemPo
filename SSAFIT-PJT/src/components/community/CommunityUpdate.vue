@@ -83,6 +83,7 @@ const goBack = () => {
   font-weight: 500;
   padding: 15px 0px;
   margin: 5px 20px;
+  background-color: white;
 }
 .my-btn {
   color: #4b565c;

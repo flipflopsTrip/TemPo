@@ -1,35 +1,34 @@
 <template>
-  <div>
-    <h3>카테고리 및 상세 검색</h3>
-    <div>
-      <fieldset style="background-color: bisque">
-        <legend>제품 카테고리</legend>
-        <div
-          v-for="item in categories"
-          :key="item.id"
-          style="display: flex; justify-content: center"
-        >
-          <input
-            type="checkbox"
-            :id="item.id"
-            name="category"
-            :value="item.name"
-            v-model="selectedCategories"
-            @click="check"
-          />
-          <label :for="item.id">{{ item.name }}</label>
-        </div>
-      </fieldset>
-      <input
-        type="text"
-        v-model="keywordTyping"
-        @keyup.enter="search"
-        placeholder="검색어를 입력하세요"
-      />
-      <br />
-      <br />
-      <button @click="search">검색</button
-      ><!--체크박스 해도 검색 버튼 눌러야함-->
+  <div class="row search-con mx-1">
+    <div class="col-12">
+      <div v-for="item in categories" :key="item.id" class="form-check form-check-inline">
+        <input
+          class="form-check-input"  
+          type="checkbox"
+          :id="item.id"
+          name="category"
+          :value="item.name"
+          v-model="selectedCategories"
+          @click="check"
+        />
+        <label :for="item.id" class="form-check-label">{{ item.name }}</label>
+      </div>
+
+      <div class="input-group mt-3">
+        <span>상세 검색</span>
+        <input
+          type="text"
+          v-model="keywordTyping"
+          @keyup.enter="search"
+          placeholder="검색어를 입력하세요"
+          class="form-control custom-input"
+        />
+        <div class="input-group-append">
+            <button class="btn btn-secondary" @click="search">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+      </div>
     </div>
   </div>
 </template>
@@ -108,4 +107,30 @@ const search = function () {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.search-con {
+	padding: 30px 30px;
+	margin-bottom: 50px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+}
+.input-group {
+	align-items: center;
+}
+.input-group > span {
+	margin-right: 20px;
+}
+.custom-input {
+	max-width: 300px;
+}
+.form-control:focus {
+  border-color: #ccc;
+  box-shadow: none;
+}
+.search-con-item {
+	width: 200px;
+}
+.input-group-append .btn {
+	border-radius: 0px 6px 6px 0px;
+}
+</style>

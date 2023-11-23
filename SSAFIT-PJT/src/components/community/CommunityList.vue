@@ -13,7 +13,7 @@
           <th>등록일</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-if="store.communityList.length > 0">
         <tr v-for="community in store.communityList" :key="community.communityId" class="my-hover text-center">
           <td>{{ community.communityId }}</td>
           <td>{{ community.category }}</td>
@@ -25,6 +25,11 @@
           <td>{{ community.userId }}</td>
           <td>{{ community.viewCnt }}</td>
           <td>{{ community.regDate }}</td>
+        </tr>
+      </tbody>
+      <tbody v-else>
+        <tr class="text-center">
+          <td colspan="5">등록된 게시글이 없습니다</td>
         </tr>
       </tbody>
     </table>

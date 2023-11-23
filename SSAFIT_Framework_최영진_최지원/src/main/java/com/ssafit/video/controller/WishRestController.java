@@ -43,13 +43,12 @@ public class WishRestController {
 	@ApiOperation(value="찜 확인", notes="찜한 영상인지 확인")
 	public ResponseEntity<?> isWish(@PathVariable int id, @RequestParam String userId){
 		boolean iswish = wishService.isWish(id, userId);
-		return new ResponseEntity<Integer>(iswish ? 1:0, HttpStatus.OK);
+		return new ResponseEntity<Integer>(iswish ? 1:0, HttpStatus.OK);//1이면 찜, 안했으면 0
 	}
 	
 	@PostMapping("/wish/{id}")
 	@ApiOperation(value="찜하기/취소", notes="찜하기/취소")
 	public ResponseEntity<?> setWish(@PathVariable int id, @RequestParam String userId){
-		System.out.println(userId);
 		boolean iswish = wishService.isWish(id, userId);//(videoId, userId)
 		int result;
 		if(iswish) 

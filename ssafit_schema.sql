@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS ssafit;
 CREATE DATABASE ssafit DEFAULT CHARACTER SET utf8mb4;
 USE ssafit;
-
+ 
 CREATE TABLE `user` (
     `id`    varchar(50)    NOT NULL PRIMARY KEY,
     `password`    varchar(50)    NOT NULL,
@@ -170,24 +170,4 @@ CREATE TABLE `weight` (
         on update cascade
 );
 
-insert into user(id, password, name, nickname, email) VALUES ("ssafy","1234","김싸피", "ssafykim", "ssafy@gmail.com");
-insert into user VALUES ("hong","1234","홍길동","2023-03-03", "hongking", "hong@gmail.com");
-insert into user VALUES ("hong2","1234","홍길동2","2023-03-03", "hongk", "hong2@gmail.com");
-
-insert into weight(userId, weight, regDate) 
-	values ("hong",54,"2023-11-01"),
-			("hong",60,"2023-11-02"),
-			("hong",63,"2023-11-03"),
-			("hong",59,"2023-11-04"),
-            ("hong",56,"2023-11-05");
-    
-select weightId, userId, weight, DATE_FORMAT(regDate, '%y.%m.%d') as regDate from weight where userId = 'hong';
-
-select * from weight where userId = 'hong' and regDate = '2023-11-01';
-update weight set weight = '55' where userId = 'hong' and regDate = '2023-11-01';
-
-select * from user;
-select * from video;
-select * from weight;
-select id from user where name = "홍길동" and email = "hong@gmail.com";
 commit;

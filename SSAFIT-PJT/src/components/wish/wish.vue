@@ -1,16 +1,10 @@
 <template>
   <div>
-    <div>
-      <!-- <div class="btn" :class="{ act: isWish }"> -->
-      <!--찜하기 버튼 class="btn"-->
-      <button type="button" @click="settWish" :class="{ active: isWishh }">
-        <!-- <i v-if="isWishh" class="bi bi-heart-fill"></i> -->
-        <i class="bi bi-heart"></i>
-      </button>
-    </div>
-    <div>
-      <!--찜한 사람-->
-    </div>
+    <button @click="settWish" class="my-btn" :class="{ active: isWishh }">
+      <span :class="{ animated: isWishh }">
+        <i :class="isWishh ? 'bi bi-balloon-heart-fill active2' : 'bi bi-balloon-heart'"></i>
+      </span>
+    </button>
   </div>
 </template>
 
@@ -40,7 +34,6 @@ onMounted(() => {
   //지금 로그인한 유저의 이 영상에 대한 찜 여부 불러오기
   storeW.checkWish(props.videoId, storeU.loginUserId);
   // isWishh.value = storeW.isWish.value;
-  // console.log("찜 상태" + isWishh.value);
 });
 
 const settWish = async function () {
@@ -55,20 +48,55 @@ const settWish = async function () {
   }
   isWishh.value = !isWishh.value;
 };
+// const settWish = async function () {
+//   await storeW.setWish(props.videoId, storeU.loginUserId); //보낸다
+//   isWishh.value = storeW.isWish;
+//   console.log(
+//     "버튼 클릭으로 settWish함수 실행: storeW.isWish=" + storeW.isWish
+//   );
+//   // storeW.checkWish(props.videoId, storeU.loginUserId);
+// };
 </script>
 
 <style scoped>
-button {
-  width: 70px;
-  height: 40px;
-  border: none;
-  background-color: rgb(250, 209, 209);
-  color: aliceblue;
-  border-radius: 20%;
-}
 
+.my-btn {
+  color: #fff;
+  border: none;
+  width: 50px;
+  height: 35px;
+  border-radius: 12px;
+  border: 2px solid #4b565c;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.my-btn:hover {
+  background-color: #f5f5f5;
+}
+.my-btn i {
+  font-size: 1.3rem;
+  color: #4b565c;
+}
 .active {
-  background-color: rgb(230, 73, 73);
-  color: aliceblue;
+  border: 2px solid #ff7777;
+}
+.active2 {
+  color: #ff7777 !important;
+}
+.animated {
+  animation: heartBeat 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

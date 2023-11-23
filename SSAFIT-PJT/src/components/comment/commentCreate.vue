@@ -1,25 +1,14 @@
 <template>
-  <div>
-    <h4>-----댓글 작성-------</h4>
-    <fieldset>
-      <legend>등록</legend>
-      <div>
-        <label for="userId">작성자 : </label>
-        <input type="text" id="userId" v-model="comment.userId" disabled />
-      </div>
-      <div>
-        <label for="content">내용 : </label>
-        <textarea
-          id="content"
-          cols="30"
-          rows="10"
-          v-model="comment.content"
-        ></textarea>
-      </div>
-      <div>
-        <button @click="createComment">등록</button>
-      </div>
-    </fieldset>
+  <div class="my-sub-con">
+    <div class="my-flex d-flex align-items-center">
+      <textarea
+        id="content"
+        v-model="comment.content"
+        class="form-control my-area"></textarea>
+    <button type="button" class="my-btn" @click="createComment">
+      등록 <i class="bi bi-pencil-square"></i>
+    </button>
+    </div>
   </div>
 </template>
 
@@ -56,4 +45,33 @@ const createComment = async () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.sub-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.my-btn {
+  color: #4b565c;
+	border: 1px solid #9DB2BF;
+	border-radius: 6px;
+	padding: 6px 8px;
+}
+.my-btn:hover {
+	color: black;
+	background-color: #9db2bf3d;
+}
+.my-flex > textarea {
+  margin-right: 10px;
+  border: 1px solid #d2d2d2;
+}
+.my-flex > button {
+  height: 40px;
+  flex-basis: 15%;
+}
+.my-sub-con {
+  margin: 20px 0px 30px;
+}
+.my-area {
+  height: 80px;
+}
+</style>
