@@ -17,9 +17,10 @@ public class LevelVoteServiceImpl implements LevelVoteService {
 	LevelVoteDao levelVoteDao;
 	
 	@Override
-	public int getAverageLevel(int videoId) {
+	public Integer getAverageLevel(int videoId) {
 		//한 영상의 난이도 득표 결과. 가장 많은 표를 받은 난이도 표시
-		int avg = levelVoteDao.calculateAverageLevel(videoId);
+		Integer avg = levelVoteDao.calculateAverageLevel(videoId);
+		if (avg == null) avg = 0;
 		HashMap<Object, Object> params = new HashMap<>();
         params.put("videoId", videoId);
         params.put("level", avg);
