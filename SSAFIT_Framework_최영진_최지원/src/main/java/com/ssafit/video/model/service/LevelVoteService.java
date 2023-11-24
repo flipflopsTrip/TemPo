@@ -8,7 +8,7 @@ import com.ssafit.video.model.dto.Video;
 public interface LevelVoteService {
 	
 	//한 영상의가장 많은 표를 받은 난이도 표시
-	public int getAverageLevel(int videoId);
+	public Integer getAverageLevel(int videoId);
 	
 	//내가 했던 투표 결과
 	public LevelVote getUserVote(String userId,int videoId);

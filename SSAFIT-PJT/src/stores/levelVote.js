@@ -26,7 +26,7 @@ export const useLevelVoteStore = defineStore("levelVote", () => {
       .then((response) => {
         if (response.data == 0) {
         } else {
-          userVoteRes.value = response.data.level;
+          // userVoteRes.value = response.data.level;
         }
       })
       .catch((err) => console.log(err));

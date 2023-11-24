@@ -33,7 +33,7 @@ public class LevelVoteRestController {
 	@GetMapping("/levelVote")
 	@ApiOperation(value = "난이도 투표 결과 조회", notes = "평균값 반환")
 	public ResponseEntity<?> getLevel(@RequestParam int id) {// 비디오id
-		int result = levelVoteService.getAverageLevel(id); // 레벨 값 들어있음
+		Integer result = levelVoteService.getAverageLevel(id); // 레벨 값 들어있음
 		if (result == 0) {
 			return new ResponseEntity<Integer>(result, HttpStatus.NO_CONTENT);
 		}
