@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafit.video.model.dao.MypageDao">
+    
+    <select id="selectWeight" parameterType="String" resultType="Weight">
+    	select weightId, userId, weight, DATE_FORMAT(regDate, '%y.%m.%d') as regDate
+    	from weight
+    	where userId = #{userId};
+    </select>
+    
+	<select id="isCheckNewWeight" parameterType="Weight" resultType="Weight">
+		select * 
+		from weight 
+		where userId = #{userId} and regDate = #{regDate};
+	</select>
+	
+	<insert id="insertWeight" parameterType="Weight">
+		insert into weight(userId, weight, regDate)
+		values (#{userId}, #{weight}, #{regDate});
+	</insert>
+	
+	<update id="updateWeight" parameterType="Weight">
+		update weight 
+		set weight = #{weight} 
+		where userId = #{userId} and regDate = #{regDate};
+	</update>
+	
+	<select id="selectCommunity" parameterType="String" resultType="Community">
+		select communityId, userId, category, title, content, date_format(regDate, '%Y-%m-%d') as regDate, viewCnt
+		from community 
+		where userId = #{userId};
+	</select>
+	
+</mapper>

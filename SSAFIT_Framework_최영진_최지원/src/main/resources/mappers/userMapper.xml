@@ -6,18 +6,36 @@
 
 	<insert id="insertUser" parameterType="User">
 		INSERT INTO user (id , password, name, nickname, birth, email)
-		VALUES (#{id}, #{password}, #{name}, #{nickname}, ifnull(#{birth}, null), ifnull(#{email}, null))
+		VALUES (#{id}, #{password}, #{name}, #{nickname}, ifnull(#{birth}, null), #{email})
 	</insert><!-- 가입할때 -->
 	
 	<select id="selectOne" parameterType="String" resultType="User">
-		SELECT id, password, name
+		SELECT id, password, name, nickname, email, birth
 		FROM user
 		WHERE id = #{id}
 	</select><!-- 가입할때 중복 방지 -->
 	
 	<select id="selectAll">
-		SELECT id, password, name
+		SELECT id, password, name, nickname, email, birth
 		FROM user
 	</select>
+	
+	<select id="selectId" parameterType="User" resultType="String">
+		select id 
+		from user 
+		where name = #{name} and email = #{email};
+	</select>
+	
+	<select id="selectForPw" parameterType="User" resultType="User">
+		select id, password, name, nickname, email, birth 
+		from user 
+		where id = #{id} and email = #{email};
+	</select>
+	
+	<update id="updatePw" parameterType="User">
+		update user
+		set password = #{password}
+		where id = #{id}
+	</update>
 	
 </mapper>

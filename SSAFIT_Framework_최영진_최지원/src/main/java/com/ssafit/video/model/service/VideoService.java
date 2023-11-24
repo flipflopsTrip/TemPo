@@ -7,7 +7,16 @@ import com.ssafit.video.model.dto.SearchCondition;
 
 public interface VideoService {
 	List<Video> getList();
+	
 	List<Video> search(SearchCondition condition);
 
 	Video getVideo(int videoId);
+	
+	Video checkVideo(String videoUrl);
+
+	Video saveVideo(Video video);
+
+	List<Video> getLevelVideo(int level);
+
+	List<Video> getLevelAllVideo();
 }

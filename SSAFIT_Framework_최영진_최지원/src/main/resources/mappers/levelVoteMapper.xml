@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafit.video.model.dao.LevelVoteDao">
+<!--levelVoteId=int	NOT NULL / userId`	varchar(50)	NOT NULL,/`videoId`	int	NOT NULL /`level`	int	NOT NULL-->
+	<select id="calculateAverageLevel" parameterType="int" resultType="int">
+	    SELECT ROUND(AVG(level)) AS average_level
+		FROM levelVote
+		WHERE videoId = 1
+		GROUP BY videoId
+		HAVING COUNT(*) >= 1;
+	</select>
+	
+	<update id="updateVideoLevel" parameterType="HashMap">
+	    UPDATE video
+    	SET level = #{level}
+    	WHERE videoId = #{videoId}
+	</update>
+	
+	
+	<select id="findVoteByUserIdAndVideoId" parameterType="HashMap" resultType="LevelVote">
+		SELECT *
+		FROM levelVote
+		WHERE userId=#{userId} and videoId=#{videoId}
+	</select>
+
+	<insert id="createVote" parameterType="LevelVote">
+	    INSERT INTO levelVote (userId, videoId, level)
+        VALUES (#{userId}, #{videoId}, #{level})
+	</insert>
+	
+	<update id="updateVote" parameterType="LevelVote">
+		UPDATE levelVote
+		SET level=#{level}
+		WHERE levelVoteId=#{levelVoteId}
+	</update>
+	
+	<select id="myVoteList" parameterType="String" resultType="Video">
+		SELECT *
+		FROM Video
+		WHERE videoId IN (SELECT videoId FROM levelVote WHERE userId=#{userId})
+	</select>
+
+</mapper>

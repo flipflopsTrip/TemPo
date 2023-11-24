@@ -10,4 +10,5 @@ public interface ReviewService {
 	int createReview(Review review);
 	int updateReview(Review review);
 	int removeReview(int reviewId);
+	List<Review> getMyReview(String userId);
 }

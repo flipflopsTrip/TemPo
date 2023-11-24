@@ -9,7 +9,7 @@
       <div class="mb-3">
           <div class="input-group">
             <span class="input-group-text"><i class="bi bi-person"></i></span>
-            <input type="text" class="form-control no-outline" id="id" placeholder="아이디" required v-model="id" @keyup.enter="login">
+            <input type="text" class="form-control no-outline" id="id" placeholder="아이디" required autofocus v-model="id" @keyup.enter="login">
           </div>
         </div>
         <div class="mb-3">
@@ -25,15 +25,15 @@
       <button @click="login" class="btn btn-primary">로그인</button>
       <div class="or-seperator"><i>또는</i></div>
       <div class="text-center social-btn">
-        <a href="#" class="btn btn-danger"><i class="bi bi-google"></i>&nbsp; Google</a>
-        <a href="#" class="btn btn-primary">&nbsp; Kakao</a>
+        <img src="@/assets/googleLoginImg.png" alt="구글로그인">
+        <img src="@/assets/kakaoLoginImg.png" alt="카카오로그인">
       </div>
     </div>
   </div>
 
   <div class="sub-card">
-    <a>아이디 찾기</a><span>&nbsp;|&nbsp;</span> 
-    <a>비밀번호 찾기</a><span>&nbsp;|&nbsp;</span>
+    <RouterLink :to="{ name: 'UserFindId' }">아이디 찾기</RouterLink><span>&nbsp;|&nbsp;</span>
+    <RouterLink :to="{ name: 'UserFindPassword' }">비밀번호 찾기</RouterLink><span>&nbsp;|&nbsp;</span>
     <RouterLink :to="{ name: 'UserRegist' }">회원가입</RouterLink>
   </div>
 </div>
@@ -88,7 +88,7 @@ const login = function() {
     border-top-right-radius: 10px;
   }
   img {
-    width: 120px;
+    width: 130px;
   }
   .form-control {
     border-radius: 5px;
@@ -127,6 +127,11 @@ const login = function() {
   .social-btn .btn-danger {
     background: #df4930;
   } 
+  .social-btn > img {
+    width: fit-content;
+    cursor: pointer;
+    padding: 8px;
+  }
   .or-seperator {
     margin-top: 40px;
     text-align: center;

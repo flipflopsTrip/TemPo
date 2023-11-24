@@ -11,5 +11,14 @@ public interface UserService {
 	User login(User user);//로그인
 
 	List<User> selectAll();
+
+	User selectOne(String id);
+
+	String getUserId(User user);
+
+	User getUserForPw(User user);
+
+	boolean modifyPw(User user);
+
 	
 }
