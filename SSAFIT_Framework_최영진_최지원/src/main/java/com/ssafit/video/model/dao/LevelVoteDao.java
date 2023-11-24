@@ -18,7 +18,7 @@ public interface LevelVoteDao {
 	public int updateVote(LevelVote levelVote);
 	
 	//그 영상의 투표 결과 평균
-	public int calculateAverageLevel(int videoId);
+	public Integer calculateAverageLevel(int videoId);
 	
 	public void updateVideoLevel(HashMap<Object, Object> params);
 	

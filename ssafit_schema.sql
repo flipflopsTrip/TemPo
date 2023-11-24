@@ -92,7 +92,7 @@ constraint FK_member_tbl_TO_comment_tbl_1
         on delete cascade
         on update cascade
 );
-
+    
 CREATE TABLE `levelVote` (
 	`levelVoteId`	int	NOT NULL	AUTO_INCREMENT PRIMARY KEY,
 	`userId`	varchar(50)	NOT NULL,
