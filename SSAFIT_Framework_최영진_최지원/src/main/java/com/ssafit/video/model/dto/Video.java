@@ -5,13 +5,15 @@ import io.swagger.annotations.ApiModel;
 @ApiModel(value="영상 바구니", description = "영상 정보")
 public class Video {
 	private int videoId;
+	private int viewCnt;
 	private String title;
 	private String url;
 	private String fitpart;
 	private String youtuber;
 	private String regDate;
-	private int viewCnt;
-
+	private int level;
+	private int reviewCount;
+	
 	public Video() {
 	}
 
@@ -79,10 +81,26 @@ public class Video {
 		this.viewCnt = viewCnt;
 	}
 
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+
 	@Override
 	public String toString() {
-		return "Video [videoId=" + videoId + ", title=" + title + ", url=" + url + ", fitpart=" + fitpart
-				+ ", youtuber=" + youtuber + ", regDate=" + regDate + ", viewCnt=" + viewCnt + "]";
+		return "Video [videoId=" + videoId + ", viewCnt=" + viewCnt + ", title=" + title + ", url=" + url + ", fitpart="
+				+ fitpart + ", youtuber=" + youtuber + ", regDate=" + regDate + ", level=" + level + "]";
 	}
 
 }	

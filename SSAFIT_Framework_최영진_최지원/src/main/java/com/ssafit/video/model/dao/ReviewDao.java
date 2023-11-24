@@ -24,4 +24,7 @@ public interface ReviewDao {
     //리뷰 조회수 증가
     public int updateViewCnt(int reviewId);
 
+    //특정 회원이 쓴 리뷰 목록
+	public List<Review> selectMyReview(String userId);
+
 }

@@ -54,6 +54,18 @@
 			<artifactId>springfox-boot-starter</artifactId>
 			<version>3.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		
+		<!-- 집에서 작업할때 jdk 이슈로 설치함 -->
+		<dependency>
+		    <groupId>javax.xml.bind</groupId>
+		     <artifactId>jaxb-api</artifactId>
+		    <version>2.3.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

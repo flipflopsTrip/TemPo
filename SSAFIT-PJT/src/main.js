@@ -18,6 +18,9 @@ import '@vuepic/vue-datepicker/dist/main.css'
 import "bootstrap-icons/font/bootstrap-icons.css"
 const app = createApp(App)
 
+// npm i vue-chartjs chart.js
+
+
 app.use(createPinia())
 app.use(router)
 

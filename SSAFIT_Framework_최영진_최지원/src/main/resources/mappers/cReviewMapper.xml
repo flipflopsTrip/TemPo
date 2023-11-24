@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafit.video.model.dao.CReviewDao">
+    
+    <!-- 자유게시판 모든 댓글 가져오기 -->
+    <select id="selectAll" parameterType="int" resultType="CReview">
+        SELECT cReviewId, userId, communityId,content, date_format(regDate, '%Y-%m-%d') as regDate
+        FROM cReview
+        WHERE communityId=#{communityId}
+    </select>
+
+    
+    <!-- 댓글 등록하기 -->
+    <insert id="insertCReview" parameterType="CReview" keyProperty="cReviewId" useGeneratedKeys="true">
+        INSERT INTO cReview (userId, communityId, content)
+        VALUES ( #{userId}, #{communityId},#{content})
+    </insert>
+    
+    <!-- 댓글 수정하기 -->
+    <update id="updateCReview" parameterType="CReview">
+        UPDATE cReview
+        SET content=#{content}, regDate = now()
+        WHERE cReviewId=#{cReviewId}
+    </update>
+    
+    <!-- 댓글 삭제하기 -->
+    <delete id="deleteCReview" parameterType="int">
+        DELETE FROM cReview
+        WHERE cReviewId=#{cReviewId}
+    </delete>
+    
+    <!-- 회원의 자유게시판 댓글 목록 -->
+    <select id="selectMyCReview" parameterType="String" resultType="CReview">
+ 	    SELECT cReviewId, userId, communityId,content, date_format(regDate, '%Y-%m-%d') as regDate
+        FROM cReview
+        WHERE userId=#{userId}
+    </select>
+
+</mapper>

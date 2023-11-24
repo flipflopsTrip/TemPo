@@ -41,4 +41,37 @@ public class UserServiceImpl implements UserService {
 		return userDao.selectAll();
 	}
 
+	@Override
+	public User selectOne(String id) {
+		User tmp = userDao.selectOne(id);
+		if (tmp != null) {
+			tmp.setPassword(null);
+			return tmp;
+		}
+		return null;
+	}
+	
+	@Override
+	public String getUserId(User user) {
+		String userId = userDao.selectId(user);
+		if (userId != null) return userId; //아이디 존재하면 반환
+		return null;
+	}
+	
+	@Override
+	public User getUserForPw(User user) {
+		User tmp = userDao.selectForPw(user);
+		if (tmp != null) return tmp;
+		return null;
+	}
+	
+	@Override
+	@Transactional
+	public boolean modifyPw(User user) {
+		if (userDao.updatePw(user) > 0) return true; //성공
+		return false; //실패
+	}
+
 }
+
+

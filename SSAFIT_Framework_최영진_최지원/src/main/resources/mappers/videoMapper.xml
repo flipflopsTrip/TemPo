@@ -6,13 +6,13 @@
 
 	<!-- 전체글 조회 -->
 	<select id="selectAll" resultType="Video">
-		SELECT video_id as videoId, title, url, fitpart, youtuber, view_cnt as viewCnt, date_format(reg_date, '%Y-%M-%d') as regDate 
+		SELECT videoId, title, url, fitpart, youtuber, viewCnt, date_format(regDate, '%Y-%m-%d') as regDate 
 		FROM video;
 	</select>
 	
 	<!-- 검색기능  -->
 	<select id="search" resultType="Video" parameterType="SearchCondition">
-		SELECT video_id as videoId, title, url, fitpart, youtuber, view_cnt as viewCnt, date_format(reg_date, '%Y-%M-%d') as regDate
+		SELECT videoId, title, url, fitpart, youtuber, viewCnt, date_format(regDate, '%Y-%m-%d') as regDate
 		FROM video
 		<!-- 검색 조건 (동적쿼리)-->
 		<where>
@@ -34,16 +34,42 @@
 
 	<!-- 상세글 조회 -->
 	<select id="selectOne" resultType="Video" parameterType="int">
-		SELECT video_id as videoId, title, url, fitpart, youtuber, view_cnt as viewCnt, date_format(reg_date, '%Y-%M-%d') as regDate
+		SELECT videoId, title, url, fitpart, youtuber, viewCnt, date_format(regDate, '%Y-%m-%d') as regDate
 		FROM video
-		WHERE video_id = #{videoId};
+		WHERE videoId = #{videoId};
 	</select>
 
 	<!-- 조회수 증가 -->
 	<update id="updateViewCnt" parameterType="int">
 		UPDATE video
-		SET view_cnt = view_cnt+1
-		WHERE video_id = #{videoId}
+		SET viewCnt = viewCnt+1
+		WHERE videoId = #{videoId}
 	</update>
+	
+	<!-- url 기준 검색 -->
+	<select id="selectUrl" resultType="Video" parameterType="String">
+		select * from video
+		where url = #{url};
+	</select>
+	
+	<!-- 영상 저장 -->
+	<insert id="insertVideo" parameterType="Video">
+		insert into video(title, fitpart, youtuber, url, regDate)
+		values (#{title}, #{fitpart}, #{youtuber}, #{url}, STR_TO_DATE(#{regDate}, '%Y-%m-%dT%H:%i:%sZ'));
+	</insert>
+	
+	<!-- 난이도 별 영상 조회 -->
+	<select id="selectLevelVideo" parameterType="int" resultType="Video">
+		select v.videoId, v.title, v.url, v.fitpart, v.youtuber, v.viewCnt, date_format(v.regDate, '%Y-%m-%d') as regDate, v.level, count(r.reviewId) as reviewCount
+		from video v left outer join review r on v.videoId = r.videoId
+		where level = #{level}
+		group by v.videoId;
+	</select>
+	
+	<select id="selectLevelAll" resultType="Video">
+		select v.videoId, v.title, v.url, v.fitpart, v.youtuber, v.viewCnt, date_format(v.regDate, '%Y-%m-%d') as regDate, v.level, count(r.reviewId) as reviewCount
+		from video v left outer join review r on v.videoId = r.videoId
+		group by v.videoId;
+	</select>
 
 </mapper>
