@@ -5,11 +5,11 @@
 <mapper namespace="com.ssafit.video.model.dao.LevelVoteDao">
 <!--levelVoteId=int	NOT NULL / userId`	varchar(50)	NOT NULL,/`videoId`	int	NOT NULL /`level`	int	NOT NULL-->
 	<select id="calculateAverageLevel" parameterType="int" resultType="int">
-    SELECT ROUND(AVG(level)) AS average_level
-	FROM levelVote
-	WHERE videoId = 1
-	GROUP BY videoId
-	HAVING COUNT(*) >= 1;
+	    SELECT ROUND(AVG(level)) AS average_level
+		FROM levelVote
+		WHERE videoId = 1
+		GROUP BY videoId
+		HAVING COUNT(*) >= 1;
 	</select>
 	
 	<update id="updateVideoLevel" parameterType="HashMap">

@@ -4,7 +4,21 @@ insert into user VALUES ("happy","1234","유재석","1995-11-23", "뚜기", "you
 insert into user VALUES ("user","1234","김가나","1985-11-23", "가나", "youu@gmail.com");
 insert into user VALUES ("java","1234","박다라","1998-06-17", "다라", "jjava@gmail.com");
  
--- video는 클릭해서
+INSERT INTO `video` (`viewCnt`, `title`, `fitpart`, `youtuber`, `url`, `regDate`, `level`)
+VALUES
+    (0, '[운동자극]피곤하고 귀찮을때 보는 동기부여영상', '전체', 'MEN 힘센남자', 'H-AcDBLqxi4', '2017-09-24 09:57:03', 0),
+    (0, '일단 보면 운동하고 싶어지는 영상 - 신나는 음악, 운동자극, 헬스장 음악', '전체', '운동 음악[Workout Music]', '9Bcp9K_1paM', '2023-05-16 08:00:10', 0),
+    (0, '균형잡힌 탄탄한 상체와 멋진 자세를 위한 덤벨 상체 운동 홈트 22분', '상체', '빅씨스 Bigsis', 'U7IH4wyVMBU', '2022-03-23 08:00:08', 0),
+    (0, '상체 다이어트 운동 BEST [팔뚝살/겨드랑이살/가슴어깨/등살]', '상체', 'Thankyou BUBU', 'C3TqpGgnIoI', '2017-11-13 13:58:02', 0),
+    (0, '하체운동 딱&#39;3가지&#39;만 하면 허벅지 쫙쫙 갈라집니다!!! (하체 필수 운동루틴)', '하체', '헬린이 탈출을 위한 운동정보', '9_AiWMlH87U', '2023-03-03 09:00:05', 0),
+    (0, '🏅요일별운동🏅 금요일 하체집중 근력운동 15분 루틴!', '하체', '힙으뜸', 'pDFuLG0xrsU', '2020-12-18 10:00:15', 0),
+    (0, '거북목, 굽은 등 해결! 하루 5분 교정 운동', '교정', '피지오스튜디오 PHYSIOSTUDIO', 'aDbqk7JbpEs', '2022-01-26 08:00:00', 0),
+    (0, '[ENG] 운동 전 최고의 스트레칭! 10분만 따라해도 운동효과 대박!', '스트레칭', '힙으뜸', 'yyjOhsNEqtE', '2019-03-12 10:39:48', 0),
+    (0, '오늘부터 이거 들으면서 10kg 뺀다🎵 운동할때 듣는 음악, 운동자극', '전체', '운동 음악[Workout Music]', 'D9_hVxuhl7Q', '2023-06-15 08:00:04', 0),
+    (0, '운동할 시간이 없다는 사람에게 보여주세요... 제발', '전체', '김종국 GYM JONG KOOK', 'Hx8Lc_0hUaI', '2021-11-04 09:00:09', 0),
+    (0, '상체 다이어트 최고의 운동 BEST [팔뚝살/겨드랑이살/등살/가슴어깨라인]', '상체', 'Thankyou BUBU', '54tTYO-vU2E', '2019-11-10 08:50:45', 0),
+    (0, '전세계 3위와 하체 운동.avi', '하체', 'Allright24_박재훈', 'tC50_pRR2Y8', '2023-11-22 13:16:16', 0),
+    (0, '[ENG] 딱 20분🔥 하루 운동 끝장내는 전신 &amp; 아랫배 &amp; 타바타 올인원 루틴', '전신', '힙으뜸', 'zruKSHfD7b4', '2023-05-09 10:15:02', 0);
 
 INSERT INTO `review` (`userId`, videoId, `title`, `content`, `regDate`)
 VALUES
@@ -27,15 +41,15 @@ VALUES
     ('hong', 3, '음악이 운동에 힘이 됩니다.'),
     ('user', 3, '나도 매일 하고 있어요! 효과가 좋아요.'),
     ('happy', 5, '다음 영상도 기대돼요!'),
-    ('ssafy', 9, '운동이 취미가 되다니 멋져요!'),
-    ('hong', 10, '이 영상은 정말 재미있어서 계속 하게 돼요.');
+    ('ssafy', 6, '운동이 취미가 되다니 멋져요!'),
+    ('hong', 6, '이 영상은 정말 재미있어서 계속 하게 돼요.');
 
 UPDATE `video`
 SET `level` = FLOOR(RAND() * 5) + 1;
 
-update `video`
-set `level` = 0
-where videoId = 8;
+-- update `video`
+-- set `level` = 0
+-- where videoId = 8;
 
 insert into weight(userId, weight, regDate) 
 	values ("hong",54,"2023-11-01"),
